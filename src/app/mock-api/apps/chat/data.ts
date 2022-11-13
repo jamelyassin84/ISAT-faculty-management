@@ -1,5 +1,5 @@
 /* eslint-disable */
-import * as moment from 'moment';
+import * as moment from 'moment'
 
 /**
  * Attachments are common and will be filled from here
@@ -18,7 +18,7 @@ const _attachments = {
     ],
     docs: [],
     links: [],
-};
+}
 
 /**
  *  If a message belongs to our user, it's marked by setting it as
@@ -282,7 +282,7 @@ export const messages = [
         value: '👍🏻',
         createdAt: moment().hour(13).minute(0).toISOString(),
     },
-];
+]
 export const chats = [
     {
         id: 'ff6bc7f1-449a-4419-af62-b89ce6cae0aa',
@@ -403,7 +403,7 @@ export const chats = [
         lastMessage: 'See you tomorrow!',
         lastMessageAt: '26/04/2021',
     },
-];
+]
 export const contacts = [
     {
         id: 'cd5fa417-b667-482d-b208-798d9da3213c',
@@ -3078,11 +3078,11 @@ export const contacts = [
         },
         attachments: _attachments,
     },
-];
+]
 export const profile: any = {
     id: 'cfaad35d-07a3-4447-a6c3-d8c3d54fd5df',
     name: 'Central Philippine University',
-    email: 'admin@cpu.edu.ph',
+    email: 'admin@isat.edu.ph',
     avatar: 'assets/images/avatars/brian-hughes.jpg',
     about: "Hi there! I'm using FuseChat.",
-};
+}

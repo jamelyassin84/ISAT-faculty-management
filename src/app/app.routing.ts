@@ -5,9 +5,9 @@ import {LayoutComponent} from 'app/layout/layout.component'
 import {InitialDataResolver} from 'app/app.resolvers'
 
 export const appRoutes: Route[] = [
-    {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
+    {path: '', pathMatch: 'full', redirectTo: 'example'},
 
-    {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'dashboard'},
+    {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'example'},
 
     {
         path: '',
@@ -114,41 +114,6 @@ export const appRoutes: Route[] = [
                     import('app/modules/admin/example/example.module').then(
                         (m) => m.ExampleModule,
                     ),
-            },
-            {
-                path: 'dashboard',
-                loadChildren: () =>
-                    import('app/modules/admin/dashboard/dashboard.module').then(
-                        (module) => module.DashboardModule,
-                    ),
-            },
-            {
-                path: 'students',
-                loadChildren: () =>
-                    import('app/modules/admin/students/students.module').then(
-                        (module) => module.StudentsModule,
-                    ),
-            },
-            {
-                path: 'survey',
-                loadChildren: () =>
-                    import('app/modules/admin/survey/survey.module').then(
-                        (module) => module.SurveyModule,
-                    ),
-            },
-            {
-                path: 'guidance-request',
-                loadChildren: () =>
-                    import(
-                        'app/modules/admin/guidance-request/guidance-request.module'
-                    ).then((module) => module.GuidanceRequestModule),
-            },
-            {
-                path: 'implicit-ratings',
-                loadChildren: () =>
-                    import(
-                        'app/modules/admin/implicit-rating/implicit-rating.module'
-                    ).then((module) => module.ImplicitRatingModule),
             },
         ],
     },

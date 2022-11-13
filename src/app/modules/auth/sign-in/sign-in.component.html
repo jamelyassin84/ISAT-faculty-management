@@ -1,58 +1,51 @@
 <div
-    class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0"
+    class="flex flex-col items-center flex-auto min-w-0 sm:flex-row md:items-start sm:justify-center md:justify-start"
 >
     <div
-        class="relative bg-cpu-color hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden dark:border-l"
+        class="relative items-center justify-center flex-auto hidden w-1/2 h-full p-16 overflow-hidden bg-isat-blue md:flex lg:px-28 dark:border-l"
     >
         <img
-            src="assets/app/bg.jpg"
-            style="position: absolute; opacity: 0.2"
-            class="logo"
+            src="../../../../assets/bg2.jpeg"
+            class="absolute object-fill scale-150 opacity-10 logo"
             alt=""
         />
 
-        <div class="z-10 relative w-full max-w-2xl">
-            <div class="text-white text-7xl font-bold">
-                Central Philippine University Student Performance Monitoring
-                Admin Panel.
+        <div class="relative z-10 w-full max-w-2xl">
+            <div class="font-bold text-white text-7xl">
+                Iloilo Science & Technology University Faculty Monitoring.
             </div>
         </div>
 
-        <div class="text-white absolute bottom-20">
+        <div class="absolute text-white bottom-20">
             <div class="font-medium text-white"></div>
             Developed by:
             <span class="text-amber-500">
-                <a target="_blank"
-                    >Group 7 of BSCS-3 from College of Computer Studies, Central
-                    Philippine University</a
-                >
+                <a target="_blank">BSIT -4 </a>
             </span>
         </div>
     </div>
 </div>
 <div
     [formGroup]="form"
-    class="flex w-full sm:w-auto md:h-full py-8 px-4 sm:p-16 md:p-16 bg-white"
+    class="flex w-full px-4 py-8 bg-white sm:w-auto md:h-full sm:p-16 md:p-16"
 >
-    <div class="w-full sm:w-80 mx-auto sm:mx-0 my-auto flex flex-col">
+    <div class="flex flex-col w-full mx-auto my-auto sm:w-80 sm:mx-0">
         <div
-            class="bg-white rounded-full p-8 mx-auto"
+            class="p-8 mx-auto bg-white rounded-full"
             style="height: 20vh; width: 20vh"
         >
             <img
-                src="assets/app/cpu-logo.png"
-                class="mt-auto w-full h-full object-cover"
+                src="/assets/logo.png"
+                class="object-cover w-full h-full mt-auto"
                 alt=""
             />
         </div>
         <div
-            class="mt-2 text-2xl font-extrabold tracking-tighter leading-tight text-center md:text-left"
+            class="mt-2 text-2xl font-extrabold leading-tight tracking-tighter text-center md:text-left"
         >
-            Central Philippine University
+            Iloilo Science & Technology University
         </div>
-        <p class="text-center md:text-left">
-            Student Performance Monitoring Admin Panel.
-        </p>
+        <p class="text-center md:text-left">Faculty Monitoring System.</p>
 
         <form class="mt-8" [formGroup]="form" #signInNgForm="ngForm">
             <mat-form-field class="w-full">
@@ -107,14 +100,14 @@
             </mat-form-field>
 
             <fuse-alert
-                class="mr-2 -pt-3 w-full"
+                class="w-full mr-2 -pt-3"
                 [appearance]="'outline'"
                 [showIcon]="false"
                 [type]="'error'"
                 [@shake]="alert.type === 'error'"
                 *ngIf="showAlert"
             >
-                <div class="flex aic w-full">
+                <div class="flex w-full aic">
                     <mat-icon
                         svgIcon="mat_outline:warning"
                         class="mr-3 icon-size-2"
@@ -124,18 +117,13 @@
                         Invalid admin account.
                     </span>
                 </div>
+                 
             </fuse-alert>
 
             <button
-                class="fuse-mat-button-large w-full mt-6 rounded"
-                mat-flat-button
-                [color]="'accent'"
-                [ngClass]="{
-                    'bg-stone-500': !form.valid || form.disabled
-                }"
+                class="flex items-center justify-center w-full py-3 mt-6 font-black text-white rounded-full fuse-mat-button-large bg-isat-violet"
                 [disabled]="form.disabled"
                 (click)="signIn()"
-                [class.animate-bounce]="form.valid && !form.disabled"
             >
                 <span *ngIf="!form.disabled"> Log-in</span>
 
@@ -154,7 +142,7 @@
 
             <div class="items-center mt-8 text-center">
                 <div class="flex-text-info">Contact Us:</div>
-                <div class="text-secondary">ernest@gmail.com</div>
+                <div class="text-secondary">jnemenzo0013@gmail.com</div>
             </div>
         </form>
     </div>
