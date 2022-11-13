@@ -24,6 +24,8 @@ import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import {provideStorage, getStorage} from '@angular/fire/storage'
 import {SETTINGS as AUTH_SETTINGS} from '@angular/fire/compat/auth'
 import {FIREBASE_OPTIONS} from '@angular/fire/compat'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
+import {ErrorInterceptor} from './shared/interceptor/error.interceptor'
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -37,6 +39,7 @@ const modules = [
     BrowserModule,
     LayoutModule,
     SharedModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     EffectsModule.forRoot([]),
     MarkdownModule.forRoot({}),
@@ -60,7 +63,11 @@ const modules = [
     imports: [...modules],
     bootstrap: [AppComponent],
     providers: [
-        // ... Existing Providers
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: ErrorInterceptor,
+        //     multi: true,
+        // },
         {
             provide: AUTH_SETTINGS,
             useValue: {appVerificationDisabledForTesting: true},

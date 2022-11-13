@@ -1,1 +1,13 @@
+<div
+    style="z-index: 9999999999999999999"
+    class="fixed bottom-0 right-0 md:right-10"
+>
+    <alert-component
+        role="button"
+        [alert]="alert"
+        (click)="removeAlert(alert.id)"
+        *ngFor="let alert of alerts$ | async; trackBy: trackByFn"
+    ></alert-component>
+</div>
+
 <router-outlet></router-outlet>

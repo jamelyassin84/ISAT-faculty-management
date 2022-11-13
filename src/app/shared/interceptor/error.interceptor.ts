@@ -28,6 +28,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         return next.handle(request).pipe(
             catchError((http: HttpErrorResponse) => {
+                console.log(http)
                 this.handleError(http)
 
                 return throwError(http)
@@ -36,6 +37,8 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     handleError(http: HttpErrorResponse) {
+        console.log(http)
+
         if (!window.navigator.onLine) {
             return this._alertService.addAlert({
                 type: 'error',

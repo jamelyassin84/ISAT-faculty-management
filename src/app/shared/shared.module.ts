@@ -11,12 +11,10 @@ import {globalComponents} from './components/global-components'
 import {globalForms} from './components/global-forms'
 import {RouterModule} from '@angular/router'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {NgApexchartsModule} from 'ng-apexcharts'
 import {sharedEffects} from './states/shared-ffects-module'
 import {sharedStateModules} from './states/shared-state-modules'
 import {angularMaterialModules} from './angular-material/angular-material-modules'
-import {ErrorInterceptor} from './interceptor/error.interceptor'
 
 const pipes = [...globalPipes, ...sharedPipes]
 
@@ -34,7 +32,7 @@ const modules = [
     RouterModule,
     FormsModule,
     CommonModule,
-    HttpClientModule,
+
     ReactiveFormsModule,
     NgApexchartsModule,
     ...sharedEffects,
@@ -51,11 +49,6 @@ const modules = [
         //     provide: MAT_DATE_RANGE_SELECTION_STRATEGY,
         //     useClass: DefaultMatCalendarRangeStrategy,
         // },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptor,
-            multi: true,
-        },
     ],
 })
 export class SharedModule {}

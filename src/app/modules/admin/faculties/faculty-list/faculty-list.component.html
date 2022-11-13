@@ -1,1 +1,73 @@
-<p>faculty-list works!</p>
+<div class="flex flex-col flex-auto p-3 -mt-3 overflow-hidden bg-card md:px-10">
+    <div
+        class="flex flex-col flex-auto overflow-x-auto overflow-y-auto border-t border-t-gray-200"
+    >
+        <table class="overflow-y-visible min-w-240">
+            <thead class="text-left">
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Position</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody [@listAnimation]="6">
+                <tr
+                    *ngFor="
+                        let order;
+                        let i = index;
+                        trackBy: trackByFn;
+                        of: [1, 2, 3, 4, 5, 6]
+                    "
+                    class="text-center border-t h-[45px] border-gray-100 hover:bg-gray-50"
+                >
+                    <td>Jamel Eid Yassin</td>
+                    <td>jamelyassin84@gmai.com</td>
+                    <td>CEO</td>
+
+                    <td class="text-center rounded-r-2xl">
+                        <div class="flex">
+                            <button
+                                matTooltip="Change Status"
+                                class="flex items-center mx-auto hover:underline"
+                                [matMenuTriggerFor]="tableMenu"
+                            >
+                                <mat-icon
+                                    class="ml-3"
+                                    svgIcon="feather:more-horizontal"
+                                ></mat-icon>
+                            </button>
+
+                            <mat-menu
+                                [xPosition]="'before'"
+                                #tableMenu="matMenu"
+                            >
+                                <button
+                                    mat-menu-item
+                                    (click)="setStatus(order, status)"
+                                >
+                                    View Faculty
+                                </button>
+
+                                <button
+                                    mat-menu-item
+                                    (click)="setStatus(order, status)"
+                                >
+                                    Remove
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div *ngIf="pagination$ | async as table">
+			<pagination
+				[table]="table"
+				*ngIf="table.meta.total !== 0"
+				class="w-full rounded-sm"
+				(onPageChange)="paginate($event)"
+			></pagination>
+		</div> -->
+    </div>
+</div>

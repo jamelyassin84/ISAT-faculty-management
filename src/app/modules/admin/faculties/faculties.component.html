@@ -4,4 +4,18 @@
         subtitle="List of Registered Faculties "
         icon="supervised_user_circle"
     ></app-header>
+
+    <div class="flex items-center py-2 bg-white border-b">
+        <div class="ml-auto">
+            <button
+                (click)="addFaculty()"
+                class="mr-3 text-white bg-isat-blue"
+                mat-button
+            >
+                Add Faculty
+            </button>
+        </div>
+    </div>
+
+    <faculty-list></faculty-list>
 </div>
