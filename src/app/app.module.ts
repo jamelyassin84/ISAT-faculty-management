@@ -22,6 +22,8 @@ import {initializeApp, provideFirebaseApp} from '@angular/fire/app'
 import {provideAuth, getAuth} from '@angular/fire/auth'
 import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import {provideStorage, getStorage} from '@angular/fire/storage'
+import {SETTINGS as AUTH_SETTINGS} from '@angular/fire/compat/auth'
+import {FIREBASE_OPTIONS} from '@angular/fire/compat'
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -39,6 +41,7 @@ const modules = [
     EffectsModule.forRoot([]),
     MarkdownModule.forRoot({}),
     StoreModule.forRoot({}, {}),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),
     FuseConfigModule.forRoot(appConfig),
@@ -46,7 +49,6 @@ const modules = [
     provideFirestore(() => getFirestore()),
     FuseMockApiModule.forRoot(mockApiServices),
     RouterModule.forRoot(appRoutes, routerConfig),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
     StoreDevtoolsModule.instrument({
         maxAge: 25,
         logOnly: environment.production,
@@ -57,5 +59,13 @@ const modules = [
     declarations: [AppComponent],
     imports: [...modules],
     bootstrap: [AppComponent],
+    providers: [
+        // ... Existing Providers
+        {
+            provide: AUTH_SETTINGS,
+            useValue: {appVerificationDisabledForTesting: true},
+        },
+        {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
+    ],
 })
 export class AppModule {}

@@ -1,21 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PublicationsComponent } from './publications.component';
-import { PublicationsAddComponent } from './publications-add/publications-add.component';
-import { PublicationsEditComponent } from './publications-edit/publications-edit.component';
-import { PublicationsListComponent } from './publications-list/publications-list.component';
+import {NgModule} from '@angular/core'
+import {PublicationsComponent} from './publications.component'
+import {PublicationsAddComponent} from './publications-add/publications-add.component'
+import {PublicationsEditComponent} from './publications-edit/publications-edit.component'
+import {PublicationsListComponent} from './publications-list/publications-list.component'
+import {SharedModule} from 'app/shared/shared.module'
+import {RouterModule} from '@angular/router'
+import {PUBLICATION_ROUTING} from 'app/app-core/routes/publication.routing'
 
-
-
-@NgModule({
-  declarations: [
+const components = [
     PublicationsComponent,
     PublicationsAddComponent,
     PublicationsEditComponent,
-    PublicationsListComponent
-  ],
-  imports: [
-    CommonModule
-  ]
+    PublicationsListComponent,
+]
+
+const modules = [SharedModule, RouterModule.forChild(PUBLICATION_ROUTING)]
+
+@NgModule({
+    declarations: [...components],
+    imports: [...modules],
 })
-export class PublicationsModule { }
+export class PublicationsModule {}

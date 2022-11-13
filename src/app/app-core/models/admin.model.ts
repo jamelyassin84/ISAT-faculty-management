@@ -4,4 +4,5 @@ export interface Admin extends BaseModel {
     name: string
     email: string
     password: string
+    photoURL: string
 }

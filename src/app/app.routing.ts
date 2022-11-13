@@ -1,8 +1,7 @@
 import {Route} from '@angular/router'
-import {AuthGuard} from 'app/core/auth/guards/auth.guard'
-import {NoAuthGuard} from 'app/core/auth/guards/noAuth.guard'
 import {LayoutComponent} from 'app/layout/layout.component'
 import {InitialDataResolver} from 'app/app.resolvers'
+import {MAIN_ROUTING} from './app-core/routes/_main.routing'
 
 export const appRoutes: Route[] = [
     {path: '', pathMatch: 'full', redirectTo: 'example'},
@@ -11,8 +10,6 @@ export const appRoutes: Route[] = [
 
     {
         path: '',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
         component: LayoutComponent,
         data: {
             layout: 'empty',
@@ -58,8 +55,6 @@ export const appRoutes: Route[] = [
 
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
         component: LayoutComponent,
         data: {
             layout: 'empty',
@@ -101,20 +96,10 @@ export const appRoutes: Route[] = [
 
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
         component: LayoutComponent,
         resolve: {
             initialData: InitialDataResolver,
         },
-        children: [
-            {
-                path: 'example',
-                loadChildren: () =>
-                    import('app/modules/admin/example/example.module').then(
-                        (m) => m.ExampleModule,
-                    ),
-            },
-        ],
+        children: [...MAIN_ROUTING],
     },
 ]

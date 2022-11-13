@@ -9,6 +9,8 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {fuseAnimations} from '@fuse/animations'
 import {FuseAlertType} from '@fuse/components/alert'
 import {AuthService} from 'app/core/auth/auth.service'
+import {AngularFireAuth} from '@angular/fire/compat/auth'
+import firebase from 'firebase/compat/app'
 
 @Component({
     selector: 'auth-sign-in',
@@ -18,10 +20,9 @@ import {AuthService} from 'app/core/auth/auth.service'
 })
 export class AuthSignInComponent implements OnInit {
     constructor(
-        private _activatedRoute: ActivatedRoute,
-        private _authService: AuthService,
-        private _formBuilder: UntypedFormBuilder,
         private _router: Router,
+        public _angularFireAuth: AngularFireAuth,
+        private _formBuilder: UntypedFormBuilder,
     ) {}
 
     @ViewChild('signInNgForm') signInNgForm: NgForm
@@ -32,8 +33,7 @@ export class AuthSignInComponent implements OnInit {
     }
     form: UntypedFormGroup = this._formBuilder.group({
         email: ['admin@isat.edu.ph', [Validators.required, Validators.email]],
-        password: ['admin', Validators.required],
-        rememberMe: [''],
+        password: ['admin123', Validators.required],
     })
 
     showAlert: boolean = false
@@ -44,21 +44,34 @@ export class AuthSignInComponent implements OnInit {
         if (this.form.invalid) {
             return
         }
-
         this.form.disable()
 
         this.showAlert = false
 
-        this._authService.signIn(this.form.value).subscribe(
-            () => {
-                const redirectURL =
-                    this._activatedRoute.snapshot.queryParamMap.get(
-                        'redirectURL',
-                    ) || '/signed-in-redirect'
+        this._angularFireAuth
+            .signInWithEmailAndPassword(
+                this.form.value.email,
+                this.form.value.password,
+            )
+            .then((data) => {
+                const user = (data.user.multiFactor as any).user
 
-                this._router.navigateByUrl(redirectURL)
-            },
-            (response) => {
+                localStorage.setItem('accessToken', user.accessToken)
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify({
+                        id: user.uid,
+                        ...user.metadata,
+                        phone: user.phoneNumber,
+                        photoURL: user.photoURL,
+                    }),
+                )
+
+                this._router.navigate(['/faculties'])
+
+                // this._router.navigate(['/profile'])
+            })
+            .catch(() => {
                 this.form.enable()
 
                 this.signInNgForm.resetForm()
@@ -69,7 +82,6 @@ export class AuthSignInComponent implements OnInit {
                 }
 
                 this.showAlert = true
-            },
-        )
+            })
     }
 }

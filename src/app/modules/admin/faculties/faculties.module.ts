@@ -6,6 +6,7 @@ import {FacultyDetailsComponent} from './faculty-details/faculty-details.compone
 import {FacultyListComponent} from './faculty-list/faculty-list.component'
 import {FacultiesComponent} from './faculties.component'
 import {SharedModule} from 'app/shared/shared.module'
+import {FACULTY_ROUTING} from 'app/app-core/routes/faculty.routing'
 
 const components = [
     FacultiesComponent,
@@ -15,7 +16,7 @@ const components = [
     FacultyEditComponent,
 ]
 
-const modules = [SharedModule, RouterModule]
+const modules = [SharedModule, RouterModule.forChild(FACULTY_ROUTING)]
 
 @NgModule({
     declarations: [...components],

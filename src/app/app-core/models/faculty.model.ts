@@ -21,4 +21,5 @@ export interface Faculty extends BaseModel {
     title: string
     date_of_birth: string
     sex: GenderEnum
+    photoURL: string
 }
