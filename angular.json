@@ -4,6 +4,7 @@
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics",
+      "@ngrx/schematics",
       "@ngrx/schematics"
     ]
   },
@@ -163,6 +164,16 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "fuse:build:production",
+            "firebaseProject": "faculty-management-12c60",
+            "firebaseHostingSite": "faculty-management-12c60"
           }
         }
       }

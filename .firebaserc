@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "faculty-management-12c60": {
+      "hosting": {
+        "fuse": [
+          "faculty-management-12c60"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "faculty-management-12c60"
+  }
+}

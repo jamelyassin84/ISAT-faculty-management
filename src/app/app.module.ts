@@ -18,6 +18,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import {environment} from '../environments/environment'
 import {StoreRouterConnectingModule} from '@ngrx/router-store'
 import {EffectsModule} from '@ngrx/effects'
+import {initializeApp, provideFirebaseApp} from '@angular/fire/app'
+import {provideAuth, getAuth} from '@angular/fire/auth'
+import {provideFirestore, getFirestore} from '@angular/fire/firestore'
+import {provideStorage, getStorage} from '@angular/fire/storage'
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -26,27 +30,27 @@ const routerConfig: ExtraOptions = {
 }
 
 const modules = [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes, routerConfig),
-
     FuseModule,
-    FuseConfigModule.forRoot(appConfig),
-    FuseMockApiModule.forRoot(mockApiServices),
-
     CoreModule,
-
+    BrowserModule,
     LayoutModule,
-
-    MarkdownModule.forRoot({}),
     SharedModule,
+    BrowserAnimationsModule,
+    EffectsModule.forRoot([]),
+    MarkdownModule.forRoot({}),
     StoreModule.forRoot({}, {}),
+    provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
+    FuseConfigModule.forRoot(appConfig),
+    StoreRouterConnectingModule.forRoot(),
+    provideFirestore(() => getFirestore()),
+    FuseMockApiModule.forRoot(mockApiServices),
+    RouterModule.forRoot(appRoutes, routerConfig),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     StoreDevtoolsModule.instrument({
         maxAge: 25,
         logOnly: environment.production,
     }),
-    StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([]),
 ]
 
 @NgModule({
