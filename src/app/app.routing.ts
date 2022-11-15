@@ -4,9 +4,9 @@ import {InitialDataResolver} from 'app/app.resolvers'
 import {MAIN_ROUTING} from './app-core/routes/_main.routing'
 
 export const appRoutes: Route[] = [
-    {path: '', pathMatch: 'full', redirectTo: 'example'},
+    {path: '', pathMatch: 'full', redirectTo: 'sign-in'},
 
-    {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'example'},
+    {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'sign-in'},
 
     {
         path: '',

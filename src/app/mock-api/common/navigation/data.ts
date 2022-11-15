@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 import {FuseNavigationItem} from '@fuse/components/navigation'
-import {adminTabs} from 'app/app-core/navigation/admin.tabs'
+import {adminTabs} from 'app/app-core/navigation/admin.navigation'
 
 export const defaultNavigation: FuseNavigationItem[] = adminTabs
 

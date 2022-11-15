@@ -14,7 +14,7 @@ export class FacultiesComponent implements OnInit {
 
     addFaculty() {
         this._matDialog.open(FacultyAddComponent, {
-            panelClass: ['w-1/2', 'drop-shadow-sm'],
+            panelClass: ['w-1/2', 'drop-shadow-sm', 'rounded-none'],
         })
     }
 }

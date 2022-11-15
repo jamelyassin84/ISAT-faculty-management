@@ -2,6 +2,14 @@ import {Route} from '@angular/router'
 
 export const MAIN_ROUTING: Route[] = [
     {
+        path: 'dashboard',
+        loadChildren: () =>
+            import('app/modules/admin/dashboard/dashboard.module').then(
+                (module) => module.DashboardModule,
+            ),
+    },
+
+    {
         path: 'faculties',
         loadChildren: () =>
             import('app/modules/admin/faculties/faculties.module').then(
@@ -39,5 +47,13 @@ export const MAIN_ROUTING: Route[] = [
             import(
                 'app/modules/admin/training-and-seminars/training-and-seminars.module'
             ).then((module) => module.TrainingAndSeminarsModule),
+    },
+
+    {
+        path: 'subjects',
+        loadChildren: () =>
+            import('app/modules/admin/subject/subject.module').then(
+                (module) => module.SubjectModule,
+            ),
     },
 ]

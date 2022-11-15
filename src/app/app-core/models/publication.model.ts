@@ -1,7 +1,11 @@
+import {Faculty} from './faculty.model'
 import {BaseModel} from './base.model'
 
 export interface Publication extends BaseModel {
+    authors: Faculty[]
     title: string
-    description: string
+    journal: string
+    volume: string
+    year: string
     files: URL[]
 }
