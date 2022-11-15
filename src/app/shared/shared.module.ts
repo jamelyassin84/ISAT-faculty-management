@@ -12,7 +12,7 @@ import {globalForms} from './components/global-forms'
 import {RouterModule} from '@angular/router'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {NgApexchartsModule} from 'ng-apexcharts'
-import {sharedEffects} from './states/shared-ffects-module'
+import {sharedEffects} from './states/shared-effects-module'
 import {sharedStateModules} from './states/shared-state-modules'
 import {angularMaterialModules} from './angular-material/angular-material-modules'
 
