@@ -16,13 +16,6 @@ export const adminTabs: FuseNavigationItem[] = [
         icon: 'supervised_user_circle',
         link: '/faculties',
     },
-    {
-        id: '3',
-        title: 'Profile',
-        type: 'basic',
-        icon: 'account_circle',
-        link: '/profile',
-    },
 
     {
         id: '4',
