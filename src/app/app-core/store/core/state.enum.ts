@@ -4,4 +4,5 @@ export enum StateEnum {
     PROFILE = 'profile',
     PUBLICATION = 'publications',
     RESEARCH = 'researches',
+    SUBJECT = 'subjects',
 }

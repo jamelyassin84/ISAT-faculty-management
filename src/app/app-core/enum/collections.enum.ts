@@ -4,4 +4,5 @@ export enum CollectionEnum {
     RESEARCHES = 'researches',
     PUBLICATIONS = 'publications',
     TRAININGS_AND_SEMINARS = 'trainings-and-seminars',
+    SUBJECTS = 'subjects',
 }
