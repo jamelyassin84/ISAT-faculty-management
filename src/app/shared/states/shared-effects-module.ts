@@ -4,6 +4,7 @@ import {ProfileEffects} from 'app/app-core/store/ngrx/profile/profile.effects'
 import {PublicationEffects} from 'app/app-core/store/ngrx/publication/publication.effects'
 import {ResearchEffects} from 'app/app-core/store/ngrx/research/research.effects'
 import {SubjectEffects} from 'app/app-core/store/ngrx/subject/subject.effects'
+import {TrainingAndSeminarEffects} from 'app/app-core/store/ngrx/training-and-seminar/training-and-seminar.effects'
 
 export const sharedEffects = [
     EffectsModule.forFeature([
@@ -12,5 +13,6 @@ export const sharedEffects = [
         PublicationEffects,
         ResearchEffects,
         SubjectEffects,
+        TrainingAndSeminarEffects,
     ]),
 ]

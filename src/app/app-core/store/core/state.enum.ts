@@ -5,4 +5,5 @@ export enum StateEnum {
     PUBLICATION = 'publications',
     RESEARCH = 'researches',
     SUBJECT = 'subjects',
+    TRAINING_AND_SEMINARS = 'TrainingAndSeminar',
 }

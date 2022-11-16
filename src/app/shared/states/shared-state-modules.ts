@@ -6,6 +6,7 @@ import {profileReducer} from 'app/app-core/store/ngrx/profile/profile.reducer'
 import {publicationReducer} from 'app/app-core/store/ngrx/publication/publication.reducer'
 import {researchReducer} from 'app/app-core/store/ngrx/research/research.reducer'
 import {subjectReducer} from 'app/app-core/store/ngrx/subject/subject.reducer'
+import {trainingAndSeminarReducer} from 'app/app-core/store/ngrx/training-and-seminar/training-and-seminar.reducer'
 
 export const sharedStateModules = [
     StoreModule.forFeature(StateEnum.ALERTS, alertReducer),
@@ -14,4 +15,8 @@ export const sharedStateModules = [
     StoreModule.forFeature(StateEnum.PUBLICATION, publicationReducer),
     StoreModule.forFeature(StateEnum.RESEARCH, researchReducer),
     StoreModule.forFeature(StateEnum.SUBJECT, subjectReducer),
+    StoreModule.forFeature(
+        StateEnum.TRAINING_AND_SEMINARS,
+        trainingAndSeminarReducer,
+    ),
 ]
