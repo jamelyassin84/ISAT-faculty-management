@@ -26,19 +26,21 @@ export class SubjectEffects {
         ),
     )
 
-    add$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.SUBJECT.ADD),
-            switchMap((action) =>
-                from(this._subjectService.add(action.subject)).pipe(
-                    map((subject) =>
-                        StoreAction.SUBJECT.ADD_SUCCESS({
-                            subject: subject,
-                        }),
+    add$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.SUBJECT.ADD),
+                switchMap((action) =>
+                    from(this._subjectService.add(action.subject)).pipe(
+                        map((subject) =>
+                            StoreAction.SUBJECT.ADD_SUCCESS({
+                                subject: subject,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
     upsert$ = createEffect(() =>
@@ -58,7 +60,7 @@ export class SubjectEffects {
 
     REMOVE$ = createEffect(() =>
         this._actions$.pipe(
-            ofType(StoreAction.RESEARCH.REMOVE),
+            ofType(StoreAction.SUBJECT.REMOVE),
             switchMap((action) =>
                 from(this._subjectService.remove(action.id)).pipe(
                     map(() =>

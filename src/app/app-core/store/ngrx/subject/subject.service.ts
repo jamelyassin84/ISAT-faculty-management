@@ -3,15 +3,19 @@ import {Injectable} from '@angular/core'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {CollectionEnum} from 'app/app-core/enum/collections.enum'
 import {Subject} from 'app/app-core/models/subjects.model'
+import {Firestore, collectionData, collection} from '@angular/fire/firestore'
 
 @Injectable({providedIn: 'root'})
 export class SubjectService {
-    constructor(private _angularFireStore: AngularFirestore) {}
+    constructor(
+        private _fireStore: Firestore,
+        private _angularFireStore: AngularFirestore,
+    ) {}
 
     get(): Observable<Subject[]> {
         return this._angularFireStore
             .collection(CollectionEnum.SUBJECTS)
-            .valueChanges() as Observable<Subject[]>
+            .valueChanges({idField: 'id'}) as any
     }
 
     async add(subject: Subject): Promise<Subject> {
