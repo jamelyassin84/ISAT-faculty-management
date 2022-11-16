@@ -5,4 +5,5 @@ import {Faculty} from 'app/app-core/models/faculty.model'
 export interface AppState {
     alerts: EntityState<Alert>
     faculties: EntityState<Faculty>
+    profile: EntityState<Faculty>
 }

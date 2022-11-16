@@ -2,17 +2,17 @@ import {Faculty} from './../../../models/faculty.model'
 import {createAction, props} from '@ngrx/store'
 
 const enum ActionEnum {
-    LOAD = '[Faculty/System] Load Alerts',
-    LOAD_SUCCESS = '[Alert/API] Load Alerts',
+    LOAD = '[Faculty/System] Load Faculties',
+    LOAD_SUCCESS = '[Faculty/API] Load Faculties',
 
-    ADD = '[Faculty/System] Add Alerts',
-    ADD_SUCCESS = '[Faculty/API] Add Alerts',
+    ADD = '[Faculty/System] Add Faculty',
+    ADD_SUCCESS = '[Faculty/API] Add Faculty',
 
-    UPSERT = '[Faculty/System] Upsert Alerts',
-    UPSERT_SUCCESS = '[Faculty/API] Upsert Alerts',
+    UPSERT = '[Faculty/System] Upsert Faculty',
+    UPSERT_SUCCESS = '[Faculty/API] Upsert Faculty',
 
-    REMOVE = '[Faculty/System] Remove Alerts',
-    REMOVE_SUCCESS = '[Faculty/API] Remove Alerts',
+    REMOVE = '[Faculty/System] Remove Faculty',
+    REMOVE_SUCCESS = '[Faculty/API] Remove Faculty',
 }
 
 export const LOAD = createAction(ActionEnum.LOAD)
