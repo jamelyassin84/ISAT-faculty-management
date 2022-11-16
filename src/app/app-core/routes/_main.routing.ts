@@ -18,6 +18,14 @@ export const MAIN_ROUTING: Route[] = [
     },
 
     {
+        path: 'staffs',
+        loadChildren: () =>
+            import('app/modules/admin/staff/staff.module').then(
+                (module) => module.StaffModule,
+            ),
+    },
+
+    {
         path: 'profile',
         loadChildren: () =>
             import('app/modules/admin/profile/profile.module').then(
