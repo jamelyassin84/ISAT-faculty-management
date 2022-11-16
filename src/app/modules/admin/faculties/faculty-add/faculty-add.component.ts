@@ -9,6 +9,9 @@ import {CollectionEnum} from 'app/app-core/enum/collections.enum'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {AlertService} from '@digital_brand_work/services/alert.service'
 import {slug_to_sentence} from '@digital_brand_work/pipes/slug-to-sentence.pipe'
+import {AppState} from 'app/app-core/store/core/app.state'
+import {Store} from '@ngrx/store'
+import {StoreAction} from 'app/app-core/store/core/action.enum'
 @Component({
     selector: 'faculty-add',
     templateUrl: './faculty-add.component.html',
@@ -17,9 +20,7 @@ import {slug_to_sentence} from '@digital_brand_work/pipes/slug-to-sentence.pipe'
 export class FacultyAddComponent implements OnInit {
     constructor(
         private _formBuilder: FormBuilder,
-        private _alertService: AlertService,
-        private _angularFireAuth: AngularFireAuth,
-        private _angularFireStore: AngularFirestore,
+        private _store: Store<AppState>,
     ) {}
 
     facultyForm: FormGroup<FacultyPayload> = this._formBuilder.group(
@@ -36,7 +37,7 @@ export class FacultyAddComponent implements OnInit {
                 ],
             ],
             position: ['', Validators.required],
-            password: ['', Validators.required, Validators.minLength(6)],
+            password: ['', [Validators.required, Validators.minLength(6)]],
             confirmPassword: ['', Validators.required],
         },
         {
@@ -53,23 +54,16 @@ export class FacultyAddComponent implements OnInit {
 
         this.facultyForm.disable()
 
-        const data = {...this.facultyForm.value}
+        let payload = {
+            ...this.facultyForm.value,
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+        } as any
 
-        this._angularFireAuth
-            .createUserWithEmailAndPassword(data.email, data.password)
-            .then(() => {
-                this._angularFireStore
-                    .collection(CollectionEnum.FACULTIES)
-                    .add({
-                        ...this.facultyForm.value,
-                    })
-                    .catch(() => {
-                        this.facultyForm.enable()
-                    })
-                    .finally(() => document.getElementById('close')?.click())
-            })
-            .catch(() => {
-                this.facultyForm.enable()
-            })
+        delete payload.confirmPassword
+
+        this._store.dispatch(StoreAction.FACULTY.ADD({faculty: payload}))
+
+        this.facultyForm.enable()
     }
 }

@@ -43,33 +43,37 @@ export class SubjectEffects {
         {dispatch: false},
     )
 
-    upsert$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.SUBJECT.UPSERT),
-            switchMap((action) =>
-                from(this._subjectService.update(action.subject)).pipe(
-                    map((subject) =>
-                        StoreAction.SUBJECT.UPSERT_SUCCESS({
-                            subject: subject,
-                        }),
+    upsert$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.SUBJECT.UPSERT),
+                switchMap((action) =>
+                    from(this._subjectService.update(action.subject)).pipe(
+                        map((subject) =>
+                            StoreAction.SUBJECT.UPSERT_SUCCESS({
+                                subject: subject,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    REMOVE$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.SUBJECT.REMOVE),
-            switchMap((action) =>
-                from(this._subjectService.remove(action.id)).pipe(
-                    map(() =>
-                        StoreAction.RESEARCH.REMOVE({
-                            id: action.id,
-                        }),
+    REMOVE$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.SUBJECT.REMOVE),
+                switchMap((action) =>
+                    from(this._subjectService.remove(action.id)).pipe(
+                        map(() =>
+                            StoreAction.RESEARCH.REMOVE({
+                                id: action.id,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 }

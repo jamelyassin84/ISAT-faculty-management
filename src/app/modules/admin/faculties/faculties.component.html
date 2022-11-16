@@ -17,5 +17,7 @@
         </div>
     </div>
 
-    <faculty-list></faculty-list>
+    <ng-container *ngIf="faculties$ | async as faculties">
+        <faculty-list [faculties]="faculties"></faculty-list>
+    </ng-container>
 </div>

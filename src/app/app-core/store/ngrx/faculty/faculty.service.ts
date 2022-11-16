@@ -15,19 +15,21 @@ export class FacultyService {
     get(): Observable<Faculty[]> {
         return this._angularFireStore
             .collection(CollectionEnum.FACULTIES)
-            .valueChanges() as Observable<Faculty[]>
+            .valueChanges({idField: 'id'}) as Observable<Faculty[]>
     }
 
     async add(faculty: Faculty): Promise<Faculty> {
         try {
-            await this._angularFireAuth.createUserWithEmailAndPassword(
-                faculty.email,
-                faculty.password,
-            )
+            const account =
+                await this._angularFireAuth.createUserWithEmailAndPassword(
+                    faculty.email,
+                    faculty.password,
+                )
 
             await this._angularFireStore
                 .collection(CollectionEnum.FACULTIES)
                 .add({
+                    uid: account.user.uid,
                     ...faculty,
                 })
 

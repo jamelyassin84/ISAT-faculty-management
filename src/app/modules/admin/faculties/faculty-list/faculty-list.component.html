@@ -14,16 +14,19 @@
             <tbody>
                 <tr
                     *ngFor="
-                        let order;
+                        let faculty;
                         let i = index;
                         trackBy: trackByFn;
-                        of: [1, 2, 3, 4, 5, 6]
+                        of: faculties
                     "
                     class="text-center border-t h-[45px] border-gray-100 hover:bg-gray-50"
                 >
-                    <td>Jamel Eid Yassin</td>
-                    <td>jamelyassin84@gmai.com</td>
-                    <td>CEO</td>
+                    <td>
+                        {{ faculty.first_name }} {{ faculty.middle_name }}
+                        {{ faculty.last_name }}
+                    </td>
+                    <td>{{ faculty.email }}</td>
+                    <td>{{ faculty.position }}</td>
 
                     <td class="text-center rounded-r-2xl">
                         <div class="flex">
@@ -42,17 +45,9 @@
                                 [xPosition]="'before'"
                                 #tableMenu="matMenu"
                             >
-                                <button
-                                    mat-menu-item
-                                    (click)="setStatus(order, status)"
-                                >
-                                    View Faculty
-                                </button>
+                                <button mat-menu-item>View Faculty</button>
 
-                                <button
-                                    mat-menu-item
-                                    (click)="setStatus(order, status)"
-                                >
+                                <button mat-menu-item (click)="remove(faculty)">
                                     Remove
                                 </button>
                             </mat-menu>

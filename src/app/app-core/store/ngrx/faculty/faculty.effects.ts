@@ -26,48 +26,54 @@ export class FacultyEffects {
         ),
     )
 
-    add$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.FACULTY.ADD),
-            switchMap((action) =>
-                from(this._facultyService.add(action.faculty)).pipe(
-                    map((faculty) =>
-                        StoreAction.FACULTY.ADD_SUCCESS({
-                            faculty: faculty,
-                        }),
+    add$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.FACULTY.ADD),
+                switchMap((action) =>
+                    from(this._facultyService.add(action.faculty)).pipe(
+                        map((faculty) =>
+                            StoreAction.FACULTY.ADD_SUCCESS({
+                                faculty: faculty,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    upsert$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.FACULTY.UPSERT),
-            switchMap((action) =>
-                from(this._facultyService.update(action.faculty)).pipe(
-                    map((faculty) =>
-                        StoreAction.FACULTY.UPSERT_SUCCESS({
-                            faculty: faculty,
-                        }),
+    upsert$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.FACULTY.UPSERT),
+                switchMap((action) =>
+                    from(this._facultyService.update(action.faculty)).pipe(
+                        map((faculty) =>
+                            StoreAction.FACULTY.UPSERT_SUCCESS({
+                                faculty: faculty,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    REMOVE$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.FACULTY.REMOVE),
-            switchMap((action) =>
-                from(this._facultyService.remove(action.id)).pipe(
-                    map(() =>
-                        StoreAction.FACULTY.REMOVE({
-                            id: action.id,
-                        }),
+    REMOVE$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.FACULTY.REMOVE),
+                switchMap((action) =>
+                    from(this._facultyService.remove(action.id)).pipe(
+                        map(() =>
+                            StoreAction.FACULTY.REMOVE({
+                                id: action.id,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 }
