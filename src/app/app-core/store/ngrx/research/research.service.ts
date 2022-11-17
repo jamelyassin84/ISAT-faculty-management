@@ -20,6 +20,8 @@ export class ResearchService {
                 .collection(CollectionEnum.RESEARCHES)
                 .add({
                     ...research,
+                    createdAt: Date.now(),
+                    updateAt: Date.now(),
                 })
 
             return research
@@ -33,6 +35,7 @@ export class ResearchService {
                 .doc(research.id)
                 .update({
                     ...research,
+                    updateAt: Date.now(),
                 })
 
             return research

@@ -24,6 +24,8 @@ export class SubjectService {
                 .collection(CollectionEnum.SUBJECTS)
                 .add({
                     ...subject,
+                    createdAt: Date.now(),
+                    updateAt: Date.now(),
                 })
 
             return subject
@@ -37,6 +39,7 @@ export class SubjectService {
                 .doc(subject.id)
                 .update({
                     ...subject,
+                    updateAt: Date.now(),
                 })
 
             return subject

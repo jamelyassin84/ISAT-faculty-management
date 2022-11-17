@@ -7,4 +7,5 @@ export interface Research extends BaseModel {
     level: ResearchLevelEnum
     completedDate: Date
     faculties: Faculty[]
+    files: string
 }

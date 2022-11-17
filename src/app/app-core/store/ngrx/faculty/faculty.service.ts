@@ -20,6 +20,8 @@ export class FacultyService {
                 .collection(CollectionEnum.FACULTIES)
                 .add({
                     ...faculty,
+                    createdAt: Date.now(),
+                    updateAt: Date.now(),
                 })
 
             return faculty
@@ -33,6 +35,7 @@ export class FacultyService {
                 .doc(faculty.id)
                 .update({
                     ...faculty,
+                    updateAt: Date.now(),
                 })
 
             return faculty

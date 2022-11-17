@@ -28,30 +28,28 @@
                     class="text-center border-t h-[45px] border-gray-100 hover:bg-gray-50"
                 >
                     <td>
-                        <ng-container *ngIf="trainingAndSeminar.faculties">{{
-                            trainingAndSeminar.faculties.join(', ')
-                        }}</ng-container>
+                        <ng-container *ngIf="trainingAndSeminar.faculties">
+                            <ng-container
+                                *ngFor="
+                                    let author of trainingAndSeminar.faculties;
+                                    trackBy: trackByFn;
+                                    let i = index
+                                "
+                            >
+                                <div>
+                                    {{ author | to_full_name }}
+                                </div>
+                            </ng-container>
+                        </ng-container>
                     </td>
                     <td>{{ trainingAndSeminar.title }}</td>
                     <td>{{ trainingAndSeminar.involvement }}</td>
                     <td>{{ trainingAndSeminar.description }}</td>
-                    <td>{{ trainingAndSeminar.level }}</td>
+                    <td>{{ trainingAndSeminar.level | titlecase }}</td>
                     <td>{{ trainingAndSeminar.agency }}</td>
                     <td>{{ trainingAndSeminar.startDate }}</td>
                     <td>{{ trainingAndSeminar.endDate }}</td>
-                    <td>
-                        <ng-container *ngIf="trainingAndSeminar.files">
-                            <a
-                                href="file"
-                                target="_blank"
-                                *ngFor="
-                                    let file of trainingAndSeminar.files;
-                                    trackBy: trackByFn
-                                "
-                                >{{ file }}</a
-                            >
-                        </ng-container>
-                    </td>
+                    <td>{{ trainingAndSeminar.files }}</td>
                     <td class="text-center rounded-r-2xl">
                         <div class="flex">
                             <button

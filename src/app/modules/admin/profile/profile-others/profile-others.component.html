@@ -12,7 +12,7 @@
         </mat-form-field>
     </form>
 
-    <div class="flex">
+    <div *ngIf="!form.disabled" class="flex">
         <button
             (click)="save()"
             class="ml-auto mr-3 text-white bg-isat-blue"

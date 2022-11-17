@@ -20,6 +20,8 @@ export class PublicationService {
                 .collection(CollectionEnum.PUBLICATIONS)
                 .add({
                     ...publication,
+                    createdAt: Date.now(),
+                    updateAt: Date.now(),
                 })
 
             return publication
@@ -33,6 +35,7 @@ export class PublicationService {
                 .doc(publication.id)
                 .update({
                     ...publication,
+                    updateAt: Date.now(),
                 })
 
             return publication

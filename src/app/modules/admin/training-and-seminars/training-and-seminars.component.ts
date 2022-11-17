@@ -27,6 +27,7 @@ export class TrainingAndSeminarsComponent implements OnInit {
     )
 
     ngOnInit(): void {
+        this._store.dispatch(StoreAction.FACULTY.LOAD())
         this._store.dispatch(StoreAction.TRAINING_AND_SEMINARS.LOAD())
     }
 

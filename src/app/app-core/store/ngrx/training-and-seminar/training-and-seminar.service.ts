@@ -22,6 +22,8 @@ export class TrainingAndSeminarService {
                 .collection(CollectionEnum.TRAININGS_AND_SEMINARS)
                 .add({
                     ...trainingAndSeminar,
+                    createdAt: Date.now(),
+                    updateAt: Date.now(),
                 })
 
             return trainingAndSeminar
@@ -37,6 +39,7 @@ export class TrainingAndSeminarService {
                 .doc(trainingAndSeminar.id)
                 .update({
                     ...trainingAndSeminar,
+                    updateAt: Date.now(),
                 })
 
             return trainingAndSeminar

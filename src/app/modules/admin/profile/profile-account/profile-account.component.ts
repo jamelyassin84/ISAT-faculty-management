@@ -1,3 +1,4 @@
+import {empty} from '@digital_brand_work/pipes/is-empty.pipe'
 import {ActivatedRoute} from '@angular/router'
 import {Faculty} from 'app/app-core/models/faculty.model'
 import {Component, Input, OnInit} from '@angular/core'
@@ -31,7 +32,7 @@ export class ProfileAccountComponent implements OnInit {
 
     @Input('profile')
     set setProfile(profile: Faculty) {
-        if (this.faculty.id !== profile.id) {
+        if (this.faculty.id !== profile?.id || empty(profile)) {
             this.form.disable()
         }
     }

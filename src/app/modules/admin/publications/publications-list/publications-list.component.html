@@ -25,27 +25,26 @@
                     class="text-center border-t h-[45px] border-gray-100 hover:bg-gray-50"
                 >
                     <td>
-                        <ng-container *ngIf="publication.authors">{{
-                            publication.authors.join(', ')
-                        }}</ng-container>
+                        <ng-container *ngIf="publication.authors">
+                            <ng-container
+                                *ngFor="
+                                    let author of publication.authors;
+                                    trackBy: trackByFn;
+                                    let i = index
+                                "
+                            >
+                                <div>
+                                    {{ author | to_full_name }}
+                                </div>
+                            </ng-container>
+                        </ng-container>
                     </td>
                     <td>{{ publication.title }}</td>
                     <td>{{ publication.journal }}</td>
                     <td>{{ publication.volume }}</td>
                     <td>{{ publication.year }}</td>
-                    <td>
-                        <ng-container *ngIf="publication.files">
-                            <a
-                                href="file"
-                                target="_blank"
-                                *ngFor="
-                                    let file of publication.files;
-                                    trackBy: trackByFn
-                                "
-                                >{{ file }}</a
-                            >
-                        </ng-container>
-                    </td>
+                    <td>{{ publication.files }}</td>
+
                     <td class="text-center rounded-r-2xl">
                         <div class="flex">
                             <button

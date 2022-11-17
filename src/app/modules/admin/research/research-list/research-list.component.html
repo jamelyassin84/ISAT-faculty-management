@@ -9,6 +9,7 @@
                     <th>Title</th>
                     <th>Level</th>
                     <th>Completed Date</th>
+                    <th>Files</th>
                     <th></th>
                 </tr>
             </thead>
@@ -23,14 +24,25 @@
                     class="text-center border-t h-[45px] border-gray-100 hover:bg-gray-50"
                 >
                     <td>
-                        <ng-container *ngIf="research.faculties">{{
-                            research.faculties.join(', ')
-                        }}</ng-container>
+                        <ng-container *ngIf="research.faculties">
+                            <ng-container
+                                *ngFor="
+                                    let author of research.faculties;
+                                    trackBy: trackByFn;
+                                    let i = index
+                                "
+                            >
+                                <div>
+                                    {{ author | to_full_name }}
+                                </div>
+                            </ng-container>
+                        </ng-container>
                     </td>
 
                     <td>{{ research.title }}</td>
-                    <td>{{ research.level }}</td>
+                    <td>{{ research.level | titlecase }}</td>
                     <td>{{ research.completedDate ?? 'N/A' }}</td>
+                    <td>{{ research.files }}</td>
 
                     <td class="text-center rounded-r-2xl">
                         <div class="flex">

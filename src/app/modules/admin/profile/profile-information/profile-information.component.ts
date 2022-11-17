@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core'
 import {FormBuilder, Validators} from '@angular/forms'
+import {empty} from '@digital_brand_work/pipes/is-empty.pipe'
 import {Store} from '@ngrx/store'
 import {GenderEnum} from 'app/app-core/enum/gender.enum'
 import {Faculty} from 'app/app-core/models/faculty.model'
@@ -34,9 +35,9 @@ export class ProfileInformationComponent implements OnInit {
 
     @Input('profile')
     set setProfile(profile: Faculty) {
-        if (this.faculty.id !== profile.id) {
-            this.form.disable()
-        }
+             if (this.faculty.id !== profile?.id || empty(profile)) {
+                 this.form.disable()
+             }
     }
 
     faculty: Faculty

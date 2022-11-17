@@ -6,7 +6,7 @@
     ></app-header>
 
     <ng-container *ngIf="faculty$ | async as faculty">
-        <ng-container *ngIf="profile$ | async as profile">
+        <ng-container *ngFor="let profile of [profile$ | async]">
             <profile-account
                 [faculty]="faculty"
                 [profile]="profile"

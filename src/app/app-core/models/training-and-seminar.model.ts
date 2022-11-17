@@ -3,7 +3,7 @@ import {TrainingAndSeminarEnum} from '../enum/training-and-seminar-level.enum'
 import {BaseModel} from './base.model'
 
 export interface TrainingAndSeminar extends BaseModel {
-    faculty: Faculty[]
+    faculty: any
     title: string
     involvement: string
     description: string
@@ -11,5 +11,5 @@ export interface TrainingAndSeminar extends BaseModel {
     agency: string
     startDate: string
     endDate: string
-    files: URL[]
+    files: string
 }

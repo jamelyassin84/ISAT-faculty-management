@@ -2,6 +2,22 @@
 
 <mat-dialog-content>
     <form [formGroup]="form" class="grid grid-cols-1 md:grid-cols-2 gap-x-5">
+        <ng-container *ngIf="faculties$ | async as faculties">
+            <mat-form-field>
+                <mat-label>Authors</mat-label>
+
+                <mat-select multiple formControlName="authors">
+                    <mat-option
+                        [value]="faculty.id"
+                        *ngFor="let faculty of faculties"
+                        >{{ faculty | to_full_name }}</mat-option
+                    >
+                </mat-select>
+
+                <mat-error>Authors are required.</mat-error>
+            </mat-form-field>
+        </ng-container>
+
         <mat-form-field>
             <mat-label>Title</mat-label>
             <input matInput formControlName="title" />
@@ -28,6 +44,12 @@
             <input type="number" matInput formControlName="year" />
 
             <mat-error>Year is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="md:col-span-2">
+            <mat-label>File Links(Separated by comma)</mat-label>
+
+            <textarea matInput formControlName="files"></textarea>
         </mat-form-field>
     </form>
 </mat-dialog-content>

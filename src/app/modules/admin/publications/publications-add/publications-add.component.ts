@@ -6,7 +6,7 @@ import {Publication} from 'app/app-core/models/publication.model'
 import {StoreAction} from 'app/app-core/store/core/action.enum'
 import {AppState} from 'app/app-core/store/core/app.state'
 import {StateEnum} from 'app/app-core/store/core/state.enum'
-import {map} from 'rxjs'
+import {map, take} from 'rxjs'
 
 @Component({
     selector: 'publications-add',
@@ -19,7 +19,7 @@ export class PublicationsAddComponent implements OnInit {
         private _store: Store<AppState>,
     ) {}
 
-    faculty$ = this._store.pipe(
+    faculties$ = this._store.pipe(
         select(StateEnum.FACULTY),
         map((x) => new TransformEntity(x).toArray()),
     )
@@ -29,8 +29,8 @@ export class PublicationsAddComponent implements OnInit {
         journal: ['', Validators.required],
         volume: ['', Validators.required],
         year: ['', Validators.required],
-        authors: this._formBuilder.array([]),
-        files: this._formBuilder.array([]),
+        authors: ['', Validators.required],
+        files: [''],
     })
 
     ngOnInit(): void {}
@@ -40,14 +40,19 @@ export class PublicationsAddComponent implements OnInit {
             return
         }
 
-        this.form.disable()
+        let payload = {...this.form.value} as Publication
 
-        const payload = {...this.form.value} as Publication
-
-        this._store.dispatch(
-            StoreAction.PUBLICATION.ADD({publication: payload}),
-        )
-
-        this.form.enable()
+        this.faculties$.pipe(take(1)).subscribe((faculties) => {
+            this._store.dispatch(
+                StoreAction.PUBLICATION.ADD({
+                    publication: {
+                        ...payload,
+                        authors: faculties.filter((faculty) =>
+                            payload.authors.includes(faculty.id),
+                        ),
+                    },
+                }),
+            )
+        })
     }
 }
