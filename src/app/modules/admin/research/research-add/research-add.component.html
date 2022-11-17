@@ -1,1 +1,47 @@
-<p>research-add works!</p>
+<h2 mat-dialog-title>Add Research</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="form" class="grid grid-cols-1 md:grid-cols-2 gap-x-5">
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" />
+
+            <mat-error>Title is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Level</mat-label>
+
+            <mat-select formControlName="level">
+                <mat-option [value]="item" *ngFor="let item of LEVELS">{{
+                    item | titlecase
+                }}</mat-option>
+            </mat-select>
+
+            <mat-error>Level is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Completed Date</mat-label>
+            <input matInput type="date" formControlName="completedDate" />
+
+            <mat-error>Completed Date is required.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button id="close" class="ml-auto" mat-button mat-dialog-close>
+        Cancel
+    </button>
+
+    <button (click)="save()" mat-button class="mat-raised-button mat-primary">
+        <span *ngIf="!form.disabled">Save</span>
+
+        <mat-progress-spinner
+            *ngIf="form.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"
+        ></mat-progress-spinner>
+    </button>
+</mat-dialog-actions>

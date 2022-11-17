@@ -26,48 +26,54 @@ export class ResearchEffects {
         ),
     )
 
-    add$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.RESEARCH.ADD),
-            switchMap((action) =>
-                from(this._researchService.add(action.research)).pipe(
-                    map((research) =>
-                        StoreAction.RESEARCH.ADD_SUCCESS({
-                            research: research,
-                        }),
+    add$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.RESEARCH.ADD),
+                switchMap((action) =>
+                    from(this._researchService.add(action.research)).pipe(
+                        map((research) =>
+                            StoreAction.RESEARCH.ADD_SUCCESS({
+                                research: research,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    upsert$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.RESEARCH.UPSERT),
-            switchMap((action) =>
-                from(this._researchService.update(action.research)).pipe(
-                    map((research) =>
-                        StoreAction.RESEARCH.UPSERT_SUCCESS({
-                            research: research,
-                        }),
+    upsert$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.RESEARCH.UPSERT),
+                switchMap((action) =>
+                    from(this._researchService.update(action.research)).pipe(
+                        map((research) =>
+                            StoreAction.RESEARCH.UPSERT_SUCCESS({
+                                research: research,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    REMOVE$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.RESEARCH.REMOVE),
-            switchMap((action) =>
-                from(this._researchService.remove(action.id)).pipe(
-                    map(() =>
-                        StoreAction.RESEARCH.REMOVE({
-                            id: action.id,
-                        }),
+    REMOVE$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.RESEARCH.REMOVE),
+                switchMap((action) =>
+                    from(this._researchService.remove(action.id)).pipe(
+                        map(() =>
+                            StoreAction.RESEARCH.REMOVE_SUCCESS({
+                                id: action.id,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 }

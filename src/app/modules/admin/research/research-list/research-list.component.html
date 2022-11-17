@@ -1,1 +1,72 @@
-<p>research-list works!</p>
+<div class="flex flex-col flex-auto p-3 -mt-3 overflow-hidden bg-card md:px-10">
+    <div
+        class="flex flex-col flex-auto overflow-x-auto overflow-y-auto border-t border-t-gray-200"
+    >
+        <table class="overflow-y-visible min-w-240">
+            <thead class="text-left">
+                <tr>
+                    <th>Faculties</th>
+                    <th>Title</th>
+                    <th>Level</th>
+                    <th>Completed Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="
+                        let research;
+                        let i = index;
+                        trackBy: trackByFn;
+                        of: researches
+                    "
+                    class="text-center border-t h-[45px] border-gray-100 hover:bg-gray-50"
+                >
+                    <td>
+                        <ng-container *ngIf="research.faculties">{{
+                            research.faculties.join(', ')
+                        }}</ng-container>
+                    </td>
+
+                    <td>{{ research.title }}</td>
+                    <td>{{ research.level }}</td>
+                    <td>{{ research.completedDate ?? 'N/A' }}</td>
+
+                    <td class="text-center rounded-r-2xl">
+                        <div class="flex">
+                            <button
+                                class="flex items-center mx-auto hover:underline"
+                                [matMenuTriggerFor]="tableMenu"
+                            >
+                                <mat-icon
+                                    class="ml-3"
+                                    svgIcon="feather:more-horizontal"
+                                ></mat-icon>
+                            </button>
+
+                            <mat-menu
+                                [xPosition]="'before'"
+                                #tableMenu="matMenu"
+                            >
+                                <button
+                                    (click)="remove(research)"
+                                    mat-menu-item
+                                >
+                                    Remove
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- <div *ngIf="pagination$ | async as table">
+			<pagination
+				[table]="table"
+				*ngIf="table.meta.total !== 0"
+				class="w-full rounded-sm"
+				(onPageChange)="paginate($event)"
+			></pagination>
+		</div> -->
+    </div>
+</div>

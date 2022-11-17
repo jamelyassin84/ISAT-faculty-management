@@ -11,7 +11,7 @@ export class ResearchService {
     get(): Observable<Research[]> {
         return this._angularFireStore
             .collection(CollectionEnum.RESEARCHES)
-            .valueChanges() as Observable<Research[]>
+            .valueChanges({idField: 'id'}) as Observable<Research[]>
     }
 
     async add(research: Research): Promise<Research> {
