@@ -1,3 +1,4 @@
+import {ActivatedRoute} from '@angular/router'
 import {Faculty} from 'app/app-core/models/faculty.model'
 import {Component, Input, OnInit} from '@angular/core'
 import {FormBuilder, Validators} from '@angular/forms'
@@ -28,6 +29,13 @@ export class ProfileAccountComponent implements OnInit {
         this.faculty = faculty
     }
 
+    @Input('profile')
+    set setProfile(profile: Faculty) {
+        if (this.faculty.id !== profile.id) {
+            this.form.disable()
+        }
+    }
+
     faculty: Faculty
 
     form = this._formBuilder.group({
@@ -41,7 +49,7 @@ export class ProfileAccountComponent implements OnInit {
 
     save() {
         this._store.dispatch(
-            StoreAction.FACULTY.UPSERT({
+            StoreAction.PROFILE.UPSERT({
                 faculty: {...this.faculty, ...(this.form.value as any)},
             }),
         )

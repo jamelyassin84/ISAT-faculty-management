@@ -22,11 +22,18 @@ export class ProfileEmploymentComponent implements OnInit {
             position: faculty.position ?? '',
             rank: faculty.rank ?? '',
             designation: faculty.designation ?? '',
-            years_in_service: faculty.years_in_service.toString() ?? '',
-            experience: faculty.experience.toString() ?? '',
+            years_in_service: faculty.years_in_service ?? '',
+            experience: faculty.experience ?? '',
         })
 
         this.faculty = faculty
+    }
+
+    @Input('profile')
+    set setProfile(profile: Faculty) {
+        if (this.faculty.id !== profile.id) {
+            this.form.disable()
+        }
     }
 
     faculty: Faculty
@@ -43,7 +50,7 @@ export class ProfileEmploymentComponent implements OnInit {
 
     save() {
         this._store.dispatch(
-            StoreAction.FACULTY.UPSERT({
+            StoreAction.PROFILE.UPSERT({
                 faculty: {...this.faculty, ...(this.form.value as any)},
             }),
         )

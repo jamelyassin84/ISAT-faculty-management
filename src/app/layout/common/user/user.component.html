@@ -14,22 +14,11 @@
 </button>
 
 <mat-menu [xPosition]="'before'" #userActions="matMenu">
-    <button mat-menu-item>
-        <span class="flex flex-col leading-none">
-            <span>Signed in as</span>
-            <span class="mt-1.5 text-sm text-isat-violet font-medium">{{
-                user.email
-            }}</span>
-        </span>
-    </button>
-
-    <button routerLink="/profile/1" mat-menu-item>
-        <span>Profile</span>
-    </button>
-
-    <button mat-menu-item>
-        <span>Account</span>
-    </button>
+    <ng-container *ngIf="profile$ | async as profile">
+        <button (click)="navigateToProfile(profile)" mat-menu-item>
+            <span>Profile</span>
+        </button>
+    </ng-container>
 
     <mat-divider class="my-2"></mat-divider>
 

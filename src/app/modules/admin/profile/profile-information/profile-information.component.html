@@ -33,7 +33,7 @@
             <mat-label>Sex</mat-label>
 
             <mat-select formControlName="sex">
-                <mat-option *ngFor="let gender of genders">{{
+                <mat-option [value]="gender" *ngFor="let gender of genders">{{
                     gender | titlecase
                 }}</mat-option>
             </mat-select>

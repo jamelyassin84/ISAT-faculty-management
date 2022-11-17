@@ -1,3 +1,6 @@
+import {StoreAction} from 'app/app-core/store/core/action.enum'
+import {Faculty} from './../../../app-core/models/faculty.model'
+import {CollectionEnum} from 'app/app-core/enum/collections.enum'
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core'
 import {
     UntypedFormBuilder,
@@ -11,6 +14,9 @@ import {FuseAlertType} from '@fuse/components/alert'
 import {AuthService} from 'app/core/auth/auth.service'
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import firebase from 'firebase/compat/app'
+import {AngularFirestore} from '@angular/fire/compat/firestore'
+import {Store} from '@ngrx/store'
+import {AppState} from 'app/app-core/store/core/app.state'
 
 @Component({
     selector: 'auth-sign-in',
@@ -21,8 +27,10 @@ import firebase from 'firebase/compat/app'
 export class AuthSignInComponent implements OnInit {
     constructor(
         private _router: Router,
-        public _angularFireAuth: AngularFireAuth,
+        private _store: Store<AppState>,
         private _formBuilder: UntypedFormBuilder,
+        public _angularFireAuth: AngularFireAuth,
+        private _angularFireStore: AngularFirestore,
     ) {}
 
     @ViewChild('signInNgForm') signInNgForm: NgForm
@@ -40,48 +48,97 @@ export class AuthSignInComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    signIn(): void {
+    async signIn(): Promise<void> {
         if (this.form.invalid) {
             return
         }
         this.form.disable()
 
+        this.checkIfFaculty()
+
         this.showAlert = false
+    }
 
-        this._angularFireAuth
-            .signInWithEmailAndPassword(
-                this.form.value.email,
-                this.form.value.password,
-            )
-            .then((data) => {
-                const user = (data.user.multiFactor as any).user
+    async checkIfFaculty() {
+        const {email, password} = this.form.value
 
-                localStorage.setItem('accessToken', user.accessToken)
+        try {
+            const querySnapshot = await this._angularFireStore
+                .collection(CollectionEnum.FACULTIES)
+                .ref.where('email', '==', email)
+                .where('password', '==', password)
+                .get()
+
+            if (querySnapshot) {
+                let faculties: Faculty[] = []
+
+                querySnapshot.forEach((faculty) => {
+                    const data = faculty.data() as any
+
+                    faculties.push({...data, id: faculty.id})
+                })
+
+                const faculty: Faculty = faculties[0]
+
+                this._store.dispatch(
+                    StoreAction.PROFILE.UPSERT_SUCCESS({faculty: faculty}),
+                )
+
+                localStorage.setItem('accessToken', 'null')
+
                 localStorage.setItem(
                     'user',
                     JSON.stringify({
-                        id: user.uid,
-                        ...user.metadata,
-                        phone: user.phoneNumber,
-                        photoURL: user.photoURL,
+                        ...faculty,
                     }),
                 )
 
-                this._router.navigate(['/faculties'])
+                setTimeout(() => {
+                    this._router.navigate(['/profile/' + faculty.id])
+                }, 1000)
 
-                // this._router.navigate(['/profile'])
-            })
-            .catch(() => {
-                this.form.enable()
+                return
+            }
 
-                this.signInNgForm.resetForm()
+            this.loginAsAdmin()
+        } catch (error) {
+            this.loginAsAdmin()
+        }
+    }
 
-                this.alert = {
-                    type: 'error',
-                    message: 'Wrong email or password',
-                }
+    async loginAsAdmin() {
+        const {email, password} = this.form.value
 
-                this.showAlert = true
-            })
+        try {
+            const data = await this._angularFireAuth.signInWithEmailAndPassword(
+                email,
+                password,
+            )
+            const user = (data.user.multiFactor as any).user
+
+            localStorage.setItem('accessToken', user.accessToken)
+            localStorage.setItem(
+                'user',
+                JSON.stringify({
+                    id: user.uid,
+                    ...user.metadata,
+                    phone: user.phoneNumber,
+                    photoURL: user.photoURL,
+                }),
+            )
+
+            this._router.navigate(['/faculties'])
+        } catch (error) {
+            this.form.enable()
+
+            this.signInNgForm.resetForm()
+
+            this.alert = {
+                type: 'error',
+                message: 'Wrong email or password',
+            }
+
+            this.showAlert = true
+        }
     }
 }

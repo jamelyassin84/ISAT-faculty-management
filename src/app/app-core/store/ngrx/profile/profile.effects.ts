@@ -1,6 +1,7 @@
+import {AlertService} from '@digital_brand_work/services/alert.service'
 import {Injectable} from '@angular/core'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
-import {from, map, switchMap} from 'rxjs'
+import {from, map, switchMap, tap} from 'rxjs'
 import {StoreAction} from '../../core/action.enum'
 import {ProfileService} from './profile.service'
 
@@ -8,6 +9,7 @@ import {ProfileService} from './profile.service'
 export class ProfileEffects {
     constructor(
         private _actions$: Actions,
+        private _alertService: AlertService,
         private _profileService: ProfileService,
     ) {}
 
@@ -21,6 +23,21 @@ export class ProfileEffects {
                             faculty: faculty,
                         }),
                     ),
+                    tap((faculty) => {
+                        localStorage.setItem(
+                            'user',
+                            JSON.stringify({
+                                ...faculty,
+                            }),
+                        )
+
+                        this._alertService.addAlert({
+                            type: 'success',
+                            title: 'Profile Updated!',
+                            message:
+                                'Your profile has been successfully updated',
+                        })
+                    }),
                 ),
             ),
         ),

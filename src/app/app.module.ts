@@ -31,6 +31,7 @@ const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled',
     useHash: true,
+    onSameUrlNavigation: 'reload',
 }
 
 const modules = [

@@ -22,10 +22,17 @@ export class ProfileOthersComponent implements OnInit {
     @Input('faculty')
     set setFaculty(faculty: Faculty) {
         this.form.setValue({
-            awards: faculty.awards.join(',') ?? '',
+            awards: faculty.awards ?? '',
         })
 
         this.faculty = faculty
+    }
+
+    @Input('profile')
+    set setProfile(profile: Faculty) {
+        if (this.faculty.id !== profile.id) {
+            this.form.disable()
+        }
     }
 
     faculty: Faculty
@@ -38,7 +45,7 @@ export class ProfileOthersComponent implements OnInit {
 
     save() {
         this._store.dispatch(
-            StoreAction.FACULTY.UPSERT({
+            StoreAction.PROFILE.UPSERT({
                 faculty: {...this.faculty, ...(this.form.value as any)},
             }),
         )

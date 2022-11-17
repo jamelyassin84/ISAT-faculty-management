@@ -31,6 +31,13 @@ export class ProfileEducationalBackgroundComponent implements OnInit {
         this.faculty = faculty
     }
 
+    @Input('profile')
+    set setProfile(profile: Faculty) {
+        if (this.faculty.id !== profile.id) {
+            this.form.disable()
+        }
+    }
+
     faculty: Faculty
 
     form = this._formBuilder.group({
@@ -47,7 +54,7 @@ export class ProfileEducationalBackgroundComponent implements OnInit {
 
     save() {
         this._store.dispatch(
-            StoreAction.FACULTY.UPSERT({
+            StoreAction.PROFILE.UPSERT({
                 faculty: {...this.faculty, ...(this.form.value as any)},
             }),
         )

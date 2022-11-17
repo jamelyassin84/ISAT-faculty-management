@@ -19,8 +19,8 @@ export interface Faculty extends BaseModel {
     position: string
     rank: string
     designation: string
-    years_in_service?: number
-    experience?: number
+    years_in_service?: string
+    experience?: string
 
     educational_attainment: string
     license_number: string
@@ -30,7 +30,7 @@ export interface Faculty extends BaseModel {
     masters?: string
     phD?: string
 
-    awards: string[]
+    awards: string
     researches: Research
     trainingAndSeminar: TrainingAndSeminar
     subjects: Subject[]

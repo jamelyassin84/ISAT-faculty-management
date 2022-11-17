@@ -5,13 +5,32 @@
         icon="account_circle"
     ></app-header>
 
-    <profile-account></profile-account>
+    <ng-container *ngIf="faculty$ | async as faculty">
+        <ng-container *ngIf="profile$ | async as profile">
+            <profile-account
+                [faculty]="faculty"
+                [profile]="profile"
+            ></profile-account>
 
-    <profile-information></profile-information>
+            <profile-information
+                [faculty]="faculty"
+                [profile]="profile"
+            ></profile-information>
 
-    <profile-educational-background></profile-educational-background>
+            <profile-educational-background
+                [faculty]="faculty"
+                [profile]="profile"
+            ></profile-educational-background>
 
-    <profile-employment></profile-employment>
+            <profile-employment
+                [faculty]="faculty"
+                [profile]="profile"
+            ></profile-employment>
 
-    <profile-others></profile-others>
+            <profile-others
+                [faculty]="faculty"
+                [profile]="profile"
+            ></profile-others>
+        </ng-container>
+    </ng-container>
 </div>
