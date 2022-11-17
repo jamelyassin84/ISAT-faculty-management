@@ -1,0 +1,60 @@
+<div class="p-5 py-10 bg-white border-b">
+    <div class="mb-3 text-4xl font-semibold">Educational Background</div>
+
+    <form
+        class="grid w-full grid-cols-1 gap-x-5 md:grid-cols-3"
+        [formGroup]="form"
+    >
+        <mat-form-field>
+            <mat-label>Educational Attainment</mat-label>
+
+            <input formControlName="educational_attainment" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>License Number</mat-label>
+
+            <input formControlName="license_number" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>College</mat-label>
+
+            <input formControlName="college" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Department</mat-label>
+
+            <input formControlName="department" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Bachelor</mat-label>
+
+            <input formControlName="bachelor" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Masters</mat-label>
+
+            <input formControlName="masters" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Phd</mat-label>
+
+            <input formControlName="phD" matInput />
+        </mat-form-field>
+    </form>
+
+    <div class="flex">
+        <button
+            (click)="save()"
+            class="ml-auto mr-3 text-white bg-isat-blue"
+            mat-button
+        >
+            Update Account
+        </button>
+    </div>
+</div>

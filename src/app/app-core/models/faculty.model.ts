@@ -7,6 +7,8 @@ import {TrainingAndSeminar} from './training-and-seminar.model'
 export interface Faculty extends BaseModel {
     email: string
     password: string
+    phone?: string
+    photoURL?: string
 
     first_name: string
     last_name: string
@@ -14,25 +16,22 @@ export interface Faculty extends BaseModel {
     date_of_birth?: string
     sex?: GenderEnum
 
+    position: string
     rank: string
+    designation: string
+    years_in_service?: number
+    experience?: number
+
     educational_attainment: string
     license_number: string
-    subjects: Subject[]
-    years_in_service?: number
-    awards: string[]
-
-    position: string
-    phone?: string
-    department?: string
     college?: string
+    department?: string
     bachelor?: string
     masters?: string
     phD?: string
-    designation: string
-    experience?: number
 
-    photoURL?: string
-
+    awards: string[]
     researches: Research
     trainingAndSeminar: TrainingAndSeminar
+    subjects: Subject[]
 }

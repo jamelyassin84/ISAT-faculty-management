@@ -1,0 +1,48 @@
+<div class="p-5 py-10 bg-white border-b">
+    <div class="mb-3 text-4xl font-semibold">Employment</div>
+
+    <form
+        class="grid w-full grid-cols-1 gap-x-5 md:grid-cols-3"
+        [formGroup]="form"
+    >
+        <mat-form-field>
+            <mat-label> Position</mat-label>
+
+            <input formControlName="position" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Rank</mat-label>
+
+            <input formControlName="rank" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Designation</mat-label>
+
+            <input formControlName="designation" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Years in Service</mat-label>
+
+            <input type="number" formControlName="years_in_service" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Experience</mat-label>
+
+            <input type="number" formControlName="experience" matInput />
+        </mat-form-field>
+    </form>
+
+    <div class="flex">
+        <button
+            (click)="save()"
+            class="ml-auto mr-3 text-white bg-isat-blue"
+            mat-button
+        >
+            Update Account
+        </button>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="p-5 py-10 bg-white border-b">
+    <div class="mb-3 text-4xl font-semibold">Information</div>
+
+    <form
+        class="grid w-full grid-cols-1 gap-x-5 md:grid-cols-3"
+        [formGroup]="form"
+    >
+        <mat-form-field>
+            <mat-label>First</mat-label>
+
+            <input formControlName="first_name" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Middle</mat-label>
+
+            <input formControlName="middle_name" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Last</mat-label>
+
+            <input formControlName="last_name" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+
+            <input formControlName="date_of_birth" type="date" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Sex</mat-label>
+
+            <mat-select formControlName="sex">
+                <mat-option *ngFor="let gender of genders">{{
+                    gender | titlecase
+                }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <div class="flex">
+        <button
+            (click)="save()"
+            class="ml-auto mr-3 text-white bg-isat-blue"
+            mat-button
+        >
+            Update Information
+        </button>
+    </div>
+</div>

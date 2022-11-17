@@ -1,0 +1,36 @@
+<div class="p-5 py-20 bg-white border-b">
+    <div class="mb-3 text-4xl font-semibold">Account</div>
+
+    <form
+        class="grid w-full grid-cols-1 gap-x-5 md:grid-cols-3"
+        [formGroup]="form"
+    >
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+
+            <input formControlName="email" type="email" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+
+            <input formControlName="password" type="password" matInput />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Phone</mat-label>
+
+            <input formControlName="phone" type="tel" matInput />
+        </mat-form-field>
+    </form>
+
+    <div class="flex">
+        <button
+            (click)="save()"
+            class="ml-auto mr-3 text-white bg-isat-blue"
+            mat-button
+        >
+            Update Account
+        </button>
+    </div>
+</div>
