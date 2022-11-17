@@ -4,4 +4,20 @@
         subtitle="Your Publications "
         icon="mat_outline:edit_note"
     ></app-header>
+
+    <div class="flex items-center py-2 bg-white border-b">
+        <div class="ml-auto">
+            <button
+                (click)="add()"
+                class="mr-3 text-white bg-isat-blue"
+                mat-button
+            >
+                Add Publication
+            </button>
+        </div>
+    </div>
+
+    <ng-container *ngIf="publications$ | async as publications">
+        <publications-list [publications]="publications"></publications-list>
+    </ng-container>
 </div>

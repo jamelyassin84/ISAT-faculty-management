@@ -11,7 +11,7 @@ export class PublicationService {
     get(): Observable<Publication[]> {
         return this._angularFireStore
             .collection(CollectionEnum.PUBLICATIONS)
-            .valueChanges() as Observable<Publication[]>
+            .valueChanges({idField: 'id'}) as Observable<Publication[]>
     }
 
     async add(publication: Publication): Promise<Publication> {

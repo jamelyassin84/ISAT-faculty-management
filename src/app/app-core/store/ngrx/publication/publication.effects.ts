@@ -26,48 +26,56 @@ export class PublicationEffects {
         ),
     )
 
-    add$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.PUBLICATION.ADD),
-            switchMap((action) =>
-                from(this._publicationService.add(action.publication)).pipe(
-                    map((publication) =>
-                        StoreAction.PUBLICATION.ADD_SUCCESS({
-                            publication: publication,
-                        }),
+    add$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.PUBLICATION.ADD),
+                switchMap((action) =>
+                    from(this._publicationService.add(action.publication)).pipe(
+                        map((publication) =>
+                            StoreAction.PUBLICATION.ADD_SUCCESS({
+                                publication: publication,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    upsert$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.PUBLICATION.UPSERT),
-            switchMap((action) =>
-                from(this._publicationService.update(action.publication)).pipe(
-                    map((publication) =>
-                        StoreAction.PUBLICATION.UPSERT_SUCCESS({
-                            publication: publication,
-                        }),
+    upsert$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.PUBLICATION.UPSERT),
+                switchMap((action) =>
+                    from(
+                        this._publicationService.update(action.publication),
+                    ).pipe(
+                        map((publication) =>
+                            StoreAction.PUBLICATION.UPSERT_SUCCESS({
+                                publication: publication,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    REMOVE$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.PUBLICATION.REMOVE),
-            switchMap((action) =>
-                from(this._publicationService.remove(action.id)).pipe(
-                    map(() =>
-                        StoreAction.PUBLICATION.REMOVE({
-                            id: action.id,
-                        }),
+    REMOVE$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.PUBLICATION.REMOVE),
+                switchMap((action) =>
+                    from(this._publicationService.remove(action.id)).pipe(
+                        map(() =>
+                            StoreAction.PUBLICATION.REMOVE_SUCCESS({
+                                id: action.id,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 }

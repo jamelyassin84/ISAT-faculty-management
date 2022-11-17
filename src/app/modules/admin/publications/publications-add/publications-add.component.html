@@ -1,1 +1,49 @@
-<p>publications-add works!</p>
+<h2 mat-dialog-title>Add Publication</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="form" class="grid grid-cols-1 md:grid-cols-2 gap-x-5">
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" />
+
+            <mat-error>Title is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Journal</mat-label>
+            <input matInput formControlName="journal" />
+
+            <mat-error>Journal is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Volume</mat-label>
+            <input matInput formControlName="volume" />
+
+            <mat-error>Volume is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Year</mat-label>
+            <input type="number" matInput formControlName="year" />
+
+            <mat-error>Year is required.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button id="close" class="ml-auto" mat-button mat-dialog-close>
+        Cancel
+    </button>
+
+    <button (click)="save()" mat-button class="mat-raised-button mat-primary">
+        <span *ngIf="!form.disabled">Save</span>
+
+        <mat-progress-spinner
+            *ngIf="form.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"
+        ></mat-progress-spinner>
+    </button>
+</mat-dialog-actions>

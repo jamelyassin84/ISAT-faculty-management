@@ -26,7 +26,7 @@ export const MAIN_ROUTING: Route[] = [
     },
 
     {
-        path: 'profile',
+        path: 'profile/:id',
         loadChildren: () =>
             import('app/modules/admin/profile/profile.module').then(
                 (module) => module.ProfileModule,
