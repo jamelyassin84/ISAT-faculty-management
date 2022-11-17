@@ -18,4 +18,4 @@ export const PIE_CHART_CONFIG = {
             },
         },
     ],
-};
+}

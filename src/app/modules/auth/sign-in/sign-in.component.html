@@ -20,7 +20,15 @@
             <div class="font-medium text-white"></div>
             Developed by:
             <span class="text-isat-orange">
-                <a target="_blank">BSIT -4 | Group 6 </a>
+                <a target="_blank"
+                    >BSIT -4 | Group 6 |
+
+                    <span *ngFor="let member of GROUP_MEMBERS; let i = index"
+                        >{{ member }}
+
+                        <span *ngIf="i !== GROUP_MEMBERS.length - 1">| </span>
+                    </span>
+                </a>
             </span>
         </div>
     </div>

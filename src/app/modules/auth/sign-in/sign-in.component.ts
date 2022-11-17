@@ -17,6 +17,7 @@ import firebase from 'firebase/compat/app'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {Store} from '@ngrx/store'
 import {AppState} from 'app/app-core/store/core/app.state'
+import {GROUP_MEMBERS} from 'app/app-core/constants/group-member.constant'
 
 @Component({
     selector: 'auth-sign-in',
@@ -33,7 +34,10 @@ export class AuthSignInComponent implements OnInit {
         private _angularFireStore: AngularFirestore,
     ) {}
 
-    @ViewChild('signInNgForm') signInNgForm: NgForm
+    @ViewChild('signInNgForm')
+    signInNgForm: NgForm
+
+    readonly GROUP_MEMBERS = GROUP_MEMBERS
 
     alert: {type: FuseAlertType; message: string} = {
         type: 'success',
@@ -133,7 +137,7 @@ export class AuthSignInComponent implements OnInit {
                 }),
             )
 
-            this._router.navigate(['/faculties'])
+            this._router.navigate(['/dashboard'])
         } catch (error) {
             this.form.enable()
 
