@@ -1,1 +1,79 @@
-<p>training-and-seminars-add works!</p>
+<h2 mat-dialog-title>Add Training And Seminar</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="form" class="grid grid-cols-1 md:grid-cols-2 gap-x-5">
+        <mat-form-field>
+            <mat-label>Title </mat-label>
+            <input matInput formControlName="title" />
+
+            <mat-error>Title is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Involvement </mat-label>
+            <input matInput formControlName="involvement" />
+
+            <mat-error>Involvement is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Description </mat-label>
+            <textarea
+                matInput
+                formControlName="description"
+                autoSize
+            ></textarea>
+
+            <mat-error>Description is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Level </mat-label>
+
+            <mat-select formControlName="level">
+                <mat-option [value]="item" *ngFor="let item of LEVELS">{{
+                    item | titlecase
+                }}</mat-option>
+            </mat-select>
+
+            <mat-error>Level is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Agency </mat-label>
+            <input matInput formControlName="agency" />
+
+            <mat-error>Agency is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Start Date </mat-label>
+            <input type="date" matInput formControlName="startDate" />
+
+            <mat-error>Start Date is required.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>End Date </mat-label>
+            <input type="date" matInput formControlName="endDate" />
+
+            <mat-error>End Date is required.</mat-error>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button id="close" class="ml-auto" mat-button mat-dialog-close>
+        Cancel
+    </button>
+
+    <button (click)="save()" mat-button class="mat-raised-button mat-primary">
+        <span *ngIf="!form.disabled">Save</span>
+
+        <mat-progress-spinner
+            *ngIf="form.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"
+        ></mat-progress-spinner>
+    </button>
+</mat-dialog-actions>

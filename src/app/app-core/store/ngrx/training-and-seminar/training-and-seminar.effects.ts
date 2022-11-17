@@ -26,56 +26,64 @@ export class TrainingAndSeminarEffects {
         ),
     )
 
-    add$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.TRAINING_AND_SEMINARS.ADD),
-            switchMap((action) =>
-                from(
-                    this._trainingAndSeminarService.add(
-                        action.trainingAndSeminar,
-                    ),
-                ).pipe(
-                    map((trainingAndSeminar) =>
-                        StoreAction.TRAINING_AND_SEMINARS.ADD_SUCCESS({
-                            trainingAndSeminar: trainingAndSeminar,
-                        }),
+    add$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.TRAINING_AND_SEMINARS.ADD),
+                switchMap((action) =>
+                    from(
+                        this._trainingAndSeminarService.add(
+                            action.trainingAndSeminar,
+                        ),
+                    ).pipe(
+                        map((trainingAndSeminar) =>
+                            StoreAction.TRAINING_AND_SEMINARS.ADD_SUCCESS({
+                                trainingAndSeminar: trainingAndSeminar,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    upsert$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.TRAINING_AND_SEMINARS.UPSERT),
-            switchMap((action) =>
-                from(
-                    this._trainingAndSeminarService.update(
-                        action.trainingAndSeminar,
-                    ),
-                ).pipe(
-                    map((trainingAndSeminar) =>
-                        StoreAction.TRAINING_AND_SEMINARS.UPSERT_SUCCESS({
-                            trainingAndSeminar: trainingAndSeminar,
-                        }),
+    upsert$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.TRAINING_AND_SEMINARS.UPSERT),
+                switchMap((action) =>
+                    from(
+                        this._trainingAndSeminarService.update(
+                            action.trainingAndSeminar,
+                        ),
+                    ).pipe(
+                        map((trainingAndSeminar) =>
+                            StoreAction.TRAINING_AND_SEMINARS.UPSERT_SUCCESS({
+                                trainingAndSeminar: trainingAndSeminar,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 
-    REMOVE$ = createEffect(() =>
-        this._actions$.pipe(
-            ofType(StoreAction.TRAINING_AND_SEMINARS.REMOVE),
-            switchMap((action) =>
-                from(this._trainingAndSeminarService.remove(action.id)).pipe(
-                    map(() =>
-                        StoreAction.TRAINING_AND_SEMINARS.REMOVE({
-                            id: action.id,
-                        }),
+    REMOVE$ = createEffect(
+        () =>
+            this._actions$.pipe(
+                ofType(StoreAction.TRAINING_AND_SEMINARS.REMOVE),
+                switchMap((action) =>
+                    from(
+                        this._trainingAndSeminarService.remove(action.id),
+                    ).pipe(
+                        map(() =>
+                            StoreAction.TRAINING_AND_SEMINARS.REMOVE_SUCCESS({
+                                id: action.id,
+                            }),
+                        ),
                     ),
                 ),
             ),
-        ),
+        {dispatch: false},
     )
 }

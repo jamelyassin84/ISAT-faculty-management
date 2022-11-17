@@ -45,7 +45,12 @@
                                 [xPosition]="'before'"
                                 #tableMenu="matMenu"
                             >
-                                <button mat-menu-item>View Faculty</button>
+                                <button
+                                    [routerLink]="'/profile/' + faculty.id"
+                                    mat-menu-item
+                                >
+                                    View Faculty
+                                </button>
 
                                 <button mat-menu-item (click)="remove(faculty)">
                                     Remove

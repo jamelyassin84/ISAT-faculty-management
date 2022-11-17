@@ -11,7 +11,7 @@ export class TrainingAndSeminarService {
     get(): Observable<TrainingAndSeminar[]> {
         return this._angularFireStore
             .collection(CollectionEnum.TRAININGS_AND_SEMINARS)
-            .valueChanges() as Observable<TrainingAndSeminar[]>
+            .valueChanges({idField: 'id'}) as Observable<TrainingAndSeminar[]>
     }
 
     async add(

@@ -4,4 +4,22 @@
         subtitle="Your Training & Seminars"
         icon="mat_outline:airplane_ticket"
     ></app-header>
+
+    <div class="flex items-center py-2 bg-white border-b">
+        <div class="ml-auto">
+            <button
+                (click)="add()"
+                class="mr-3 text-white bg-isat-blue"
+                mat-button
+            >
+                Add Training and Seminars
+            </button>
+        </div>
+    </div>
+
+    <ng-container *ngIf="trainingAndSeminars$ | async as trainingAndSeminars">
+        <training-and-seminars-list
+            [trainingAndSeminars]="trainingAndSeminars"
+        ></training-and-seminars-list>
+    </ng-container>
 </div>
