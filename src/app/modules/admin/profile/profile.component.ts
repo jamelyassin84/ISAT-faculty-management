@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
     )
 
     ngOnInit(): void {
+        this._store.dispatch(StoreAction.SUBJECT.LOAD())
         this._store.dispatch(StoreAction.FACULTY.LOAD())
     }
 }

@@ -31,18 +31,23 @@
                 ></mat-icon>
             </div>
 
-            <div class="flex flex-col items-center justify-center w-full mt-6">
+            <ng-container *ngFor="let profile of [profile$ | async]">
                 <div
-                    class="w-full overflow-hidden font-medium leading-normal text-center whitespace-nowrap text-ellipsis"
+                    class="flex flex-col items-center justify-center w-full mt-6"
                 >
-                    John Doe
+                    <div
+                        class="w-full overflow-hidden font-medium leading-normal text-center whitespace-nowrap text-ellipsis"
+                    >
+                        {{ isAdmin ? 'ISAT-U' : (profile | to_full_name) }}
+                    </div>
+
+                    <div
+                        class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary"
+                    >
+                        {{ isAdmin ? 'admin@isat.edu.ph' : profile.email }}
+                    </div>
                 </div>
-                <div
-                    class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary"
-                >
-                    jamelyassin84@gmail.com
-                </div>
-            </div>
+            </ng-container>
         </div>
     </ng-container>
 
