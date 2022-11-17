@@ -15,6 +15,8 @@ export class SubjectListComponent implements OnInit {
     @Input()
     subjects: Subject[] = []
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     ngOnInit(): void {}
 
     remove(subject: Subject): void {

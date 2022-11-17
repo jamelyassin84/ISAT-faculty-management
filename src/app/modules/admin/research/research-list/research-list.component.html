@@ -49,6 +49,7 @@
                                 #tableMenu="matMenu"
                             >
                                 <button
+                                    *ngIf="isAdmin"
                                     (click)="remove(research)"
                                     mat-menu-item
                                 >

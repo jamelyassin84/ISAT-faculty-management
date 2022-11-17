@@ -78,6 +78,12 @@ export class AuthSignInComponent implements OnInit {
                     faculties.push({...data, id: faculty.id})
                 })
 
+                if (faculties.length === 0) {
+                    this.loginAsAdmin()
+
+                    return
+                }
+
                 const faculty: Faculty = faculties[0]
 
                 this._store.dispatch(

@@ -39,7 +39,11 @@
                                 [xPosition]="'before'"
                                 #tableMenu="matMenu"
                             >
-                                <button (click)="remove(subject)" mat-menu-item>
+                                <button
+                                    *ngIf="isAdmin"
+                                    (click)="remove(subject)"
+                                    mat-menu-item
+                                >
                                     Remove
                                 </button>
                             </mat-menu>

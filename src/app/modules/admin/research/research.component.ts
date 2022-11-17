@@ -19,12 +19,15 @@ export class ResearchComponent implements OnInit {
         private _store: Store<AppState>,
     ) {}
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     researches$ = this._store.pipe(
         select(StateEnum.RESEARCH),
         map((x) => new TransformEntity(x).toArray()),
     )
 
     ngOnInit(): void {
+        this._store.dispatch(StoreAction.FACULTY.LOAD())
         this._store.dispatch(StoreAction.RESEARCH.LOAD())
     }
 

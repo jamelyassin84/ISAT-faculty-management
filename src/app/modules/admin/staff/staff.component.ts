@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
-  selector: 'staff',
-  templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.scss']
+    selector: 'staff',
+    templateUrl: './staff.component.html',
+    styleUrls: ['./staff.component.scss'],
 })
 export class StaffComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
 
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

@@ -15,6 +15,8 @@ export class ResearchListComponent implements OnInit {
     @Input()
     researches: Research[] = []
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     ngOnInit(): void {}
 
     remove(research: Research): void {

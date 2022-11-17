@@ -15,6 +15,8 @@ export class PublicationsListComponent implements OnInit {
     @Input()
     publications: Publication[] = []
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     ngOnInit(): void {}
 
     remove(publication: Publication): void {

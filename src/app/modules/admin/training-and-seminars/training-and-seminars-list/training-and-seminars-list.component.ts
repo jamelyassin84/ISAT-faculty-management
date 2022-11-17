@@ -15,6 +15,8 @@ export class TrainingAndSeminarsListComponent implements OnInit {
     @Input()
     trainingAndSeminars: TrainingAndSeminar[] = []
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     ngOnInit(): void {}
 
     remove(trainingAndSeminar: TrainingAndSeminar): void {

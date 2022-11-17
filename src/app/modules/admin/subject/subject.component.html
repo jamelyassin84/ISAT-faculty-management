@@ -8,6 +8,7 @@
     <div class="flex items-center py-2 bg-white border-b">
         <div class="ml-auto">
             <button
+                *ngIf="isAdmin"
                 (click)="add()"
                 class="mr-3 text-white bg-isat-blue"
                 mat-button

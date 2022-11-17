@@ -19,6 +19,8 @@ export class TrainingAndSeminarsComponent implements OnInit {
         private _store: Store<AppState>,
     ) {}
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     trainingAndSeminars$ = this._store.pipe(
         select(StateEnum.TRAINING_AND_SEMINARS),
         map((x) => new TransformEntity(x).toArray()),

@@ -63,6 +63,7 @@
                                 #tableMenu="matMenu"
                             >
                                 <button
+                                    *ngIf="isAdmin"
                                     (click)="remove(publication)"
                                     mat-menu-item
                                 >

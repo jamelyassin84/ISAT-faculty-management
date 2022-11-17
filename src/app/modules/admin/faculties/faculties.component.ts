@@ -19,6 +19,8 @@ export class FacultiesComponent implements OnInit {
         private _store: Store<AppState>,
     ) {}
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     faculties$ = this._store.pipe(
         select(StateEnum.FACULTY),
         map((x) => new TransformEntity(x).toArray()),

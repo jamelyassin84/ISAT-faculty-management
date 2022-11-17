@@ -6,7 +6,7 @@
     ></app-header>
 
     <div class="flex items-center py-2 bg-white border-b">
-        <div class="ml-auto">
+        <div *ngIf="isAdmin" class="ml-auto">
             <button
                 (click)="add()"
                 class="mr-3 text-white bg-isat-blue"

@@ -19,12 +19,15 @@ export class PublicationsComponent implements OnInit {
         private _store: Store<AppState>,
     ) {}
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     publications$ = this._store.pipe(
         select(StateEnum.PUBLICATION),
         map((x) => new TransformEntity(x).toArray()),
     )
 
     ngOnInit(): void {
+        this._store.dispatch(StoreAction.FACULTY.LOAD())
         this._store.dispatch(StoreAction.PUBLICATION.LOAD())
     }
 

@@ -19,6 +19,8 @@ export class SubjectComponent implements OnInit {
         private _store: Store<AppState>,
     ) {}
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     subjects$ = this._store.pipe(
         select(StateEnum.SUBJECT),
         map((x) => new TransformEntity(x).toArray()),

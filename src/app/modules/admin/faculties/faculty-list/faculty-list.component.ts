@@ -16,6 +16,8 @@ export class FacultyListComponent implements OnInit {
 
     ngOnInit(): void {}
 
+    isAdmin: boolean = localStorage.getItem('accessToken') !== 'null'
+
     @Input()
     faculties: Faculty[] = []
 

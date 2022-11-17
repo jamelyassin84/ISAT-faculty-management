@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core'
 import {FormBuilder, Validators} from '@angular/forms'
-import {Store} from '@ngrx/store'
+import {TransformEntity} from '@digital_brand_work/helpers/transform-entity'
+import {select, Store} from '@ngrx/store'
 import {Publication} from 'app/app-core/models/publication.model'
 import {StoreAction} from 'app/app-core/store/core/action.enum'
 import {AppState} from 'app/app-core/store/core/app.state'
+import {StateEnum} from 'app/app-core/store/core/state.enum'
+import {map} from 'rxjs'
 
 @Component({
     selector: 'publications-add',
@@ -15,6 +18,11 @@ export class PublicationsAddComponent implements OnInit {
         private _formBuilder: FormBuilder,
         private _store: Store<AppState>,
     ) {}
+
+    faculty$ = this._store.pipe(
+        select(StateEnum.FACULTY),
+        map((x) => new TransformEntity(x).toArray()),
+    )
 
     form = this._formBuilder.group({
         title: ['', Validators.required],

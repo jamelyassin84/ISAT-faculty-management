@@ -45,7 +45,6 @@ export class UserComponent implements OnInit, OnDestroy {
     profile$ = this._store.pipe(
         select(StateEnum.PROFILE),
         map((x) => new TransformEntity(x).toObject()),
-        tap((x) => console.log(x)),
     )
 
     ngOnInit(): void {

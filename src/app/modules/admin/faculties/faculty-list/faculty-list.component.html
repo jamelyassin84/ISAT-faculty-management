@@ -52,7 +52,11 @@
                                     View Faculty
                                 </button>
 
-                                <button mat-menu-item (click)="remove(faculty)">
+                                <button
+                                    *ngIf="isAdmin"
+                                    mat-menu-item
+                                    (click)="remove(faculty)"
+                                >
                                     Remove
                                 </button>
                             </mat-menu>

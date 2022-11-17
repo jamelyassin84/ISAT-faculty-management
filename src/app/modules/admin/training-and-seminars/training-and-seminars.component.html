@@ -9,6 +9,7 @@
         <div class="ml-auto">
             <button
                 (click)="add()"
+                *ngIf="isAdmin"
                 class="mr-3 text-white bg-isat-blue"
                 mat-button
             >
