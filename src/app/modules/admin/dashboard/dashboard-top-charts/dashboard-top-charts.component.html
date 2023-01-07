@@ -1,95 +1,96 @@
-<div class="grid w-full gap-10 p-10 bg-white md:grid-cols-2">
-    <ng-container *ngIf="faculties$ | async as faculties"> </ng-container>
-    <ng-container *ngIf="publications$ | async as publications"> </ng-container>
-    <ng-container *ngIf="researches$ | async as researches"> </ng-container>
-    <ng-container *ngIf="trainingAndSeminars$ | async as trainingAndSeminars">
-    </ng-container>
-
+<div *ngIf="ready" class="grid w-full gap-10 p-10 bg-white md:grid-cols-2">
     <div>
         <div class="text-3xl font-bold">Faculties</div>
-
-        <apx-chart
-            @slideInBottom
-            class="w-full h-[50vh]"
-            [chart]="facultiesChart.chart"
-            [colors]="facultiesChart.colors"
-            [dataLabels]="facultiesChart.dataLabels"
-            [grid]="facultiesChart.grid"
-            [labels]="facultiesChart.labels"
-            [legend]="facultiesChart.legend"
-            [plotOptions]="facultiesChart.plotOptions"
-            [series]="facultiesChart.series"
-            [states]="facultiesChart.states"
-            [stroke]="facultiesChart.stroke"
-            [tooltip]="facultiesChart.tooltip"
-            [xaxis]="facultiesChart.xaxis"
-            [yaxis]="facultiesChart.yaxis"
-        ></apx-chart>
+        <ng-container *ngIf="faculties$ | async as faculties">
+            <apx-chart
+                @slideInBottom
+                class="w-full h-[50vh]"
+                [chart]="facultiesChart.chart"
+                [colors]="facultiesChart.colors"
+                [dataLabels]="facultiesChart.dataLabels"
+                [grid]="facultiesChart.grid"
+                [labels]="facultiesChart.labels"
+                [legend]="facultiesChart.legend"
+                [plotOptions]="facultiesChart.plotOptions"
+                [series]="facultiesChart.series"
+                [states]="facultiesChart.states"
+                [stroke]="facultiesChart.stroke"
+                [tooltip]="facultiesChart.tooltip"
+                [xaxis]="facultiesChart.xaxis"
+                [yaxis]="facultiesChart.yaxis"
+            ></apx-chart>
+        </ng-container>
     </div>
 
     <div>
         <div class="text-3xl font-bold">Publications</div>
-
-        <apx-chart
-            @slideInBottom
-            class="w-full h-[50vh]"
-            [chart]="publicationsChart.chart"
-            [colors]="publicationsChart.colors"
-            [dataLabels]="publicationsChart.dataLabels"
-            [grid]="publicationsChart.grid"
-            [labels]="publicationsChart.labels"
-            [legend]="publicationsChart.legend"
-            [plotOptions]="publicationsChart.plotOptions"
-            [series]="publicationsChart.series"
-            [states]="publicationsChart.states"
-            [stroke]="publicationsChart.stroke"
-            [tooltip]="publicationsChart.tooltip"
-            [xaxis]="publicationsChart.xaxis"
-            [yaxis]="publicationsChart.yaxis"
-        ></apx-chart>
+        <ng-container *ngIf="publications$ | async as publications">
+            <apx-chart
+                @slideInBottom
+                class="w-full h-[50vh]"
+                [chart]="publicationsChart.chart"
+                [colors]="publicationsChart.colors"
+                [dataLabels]="publicationsChart.dataLabels"
+                [grid]="publicationsChart.grid"
+                [labels]="publicationsChart.labels"
+                [legend]="publicationsChart.legend"
+                [plotOptions]="publicationsChart.plotOptions"
+                [series]="publicationsChart.series"
+                [states]="publicationsChart.states"
+                [stroke]="publicationsChart.stroke"
+                [tooltip]="publicationsChart.tooltip"
+                [xaxis]="publicationsChart.xaxis"
+                [yaxis]="publicationsChart.yaxis"
+            ></apx-chart
+        ></ng-container>
     </div>
 
     <div>
         <div class="text-3xl font-bold">Researches</div>
 
-        <apx-chart
-            @slideInBottom
-            class="w-full h-[50vh]"
-            [chart]="researchesChart.chart"
-            [colors]="researchesChart.colors"
-            [dataLabels]="researchesChart.dataLabels"
-            [grid]="researchesChart.grid"
-            [labels]="researchesChart.labels"
-            [legend]="researchesChart.legend"
-            [plotOptions]="researchesChart.plotOptions"
-            [series]="researchesChart.series"
-            [states]="researchesChart.states"
-            [stroke]="researchesChart.stroke"
-            [tooltip]="researchesChart.tooltip"
-            [xaxis]="researchesChart.xaxis"
-            [yaxis]="researchesChart.yaxis"
-        ></apx-chart>
+        <ng-container *ngIf="researches$ | async as researches">
+            <apx-chart
+                @slideInBottom
+                class="w-full h-[50vh]"
+                [chart]="researchesChart.chart"
+                [colors]="researchesChart.colors"
+                [dataLabels]="researchesChart.dataLabels"
+                [grid]="researchesChart.grid"
+                [labels]="researchesChart.labels"
+                [legend]="researchesChart.legend"
+                [plotOptions]="researchesChart.plotOptions"
+                [series]="researchesChart.series"
+                [states]="researchesChart.states"
+                [stroke]="researchesChart.stroke"
+                [tooltip]="researchesChart.tooltip"
+                [xaxis]="researchesChart.xaxis"
+                [yaxis]="researchesChart.yaxis"
+            ></apx-chart>
+        </ng-container>
     </div>
 
     <div>
         <div class="text-3xl font-bold">Training & Seminars</div>
-
-        <apx-chart
-            @slideInBottom
-            class="w-full h-[50vh]"
-            [chart]="trainingAndSeminarsChart.chart"
-            [colors]="trainingAndSeminarsChart.colors"
-            [dataLabels]="trainingAndSeminarsChart.dataLabels"
-            [grid]="trainingAndSeminarsChart.grid"
-            [labels]="trainingAndSeminarsChart.labels"
-            [legend]="trainingAndSeminarsChart.legend"
-            [plotOptions]="trainingAndSeminarsChart.plotOptions"
-            [series]="trainingAndSeminarsChart.series"
-            [states]="trainingAndSeminarsChart.states"
-            [stroke]="trainingAndSeminarsChart.stroke"
-            [tooltip]="trainingAndSeminarsChart.tooltip"
-            [xaxis]="trainingAndSeminarsChart.xaxis"
-            [yaxis]="trainingAndSeminarsChart.yaxis"
-        ></apx-chart>
+        <ng-container
+            *ngIf="trainingAndSeminars$ | async as trainingAndSeminars"
+        >
+            <apx-chart
+                @slideInBottom
+                class="w-full h-[50vh]"
+                [chart]="trainingAndSeminarsChart.chart"
+                [colors]="trainingAndSeminarsChart.colors"
+                [dataLabels]="trainingAndSeminarsChart.dataLabels"
+                [grid]="trainingAndSeminarsChart.grid"
+                [labels]="trainingAndSeminarsChart.labels"
+                [legend]="trainingAndSeminarsChart.legend"
+                [plotOptions]="trainingAndSeminarsChart.plotOptions"
+                [series]="trainingAndSeminarsChart.series"
+                [states]="trainingAndSeminarsChart.states"
+                [stroke]="trainingAndSeminarsChart.stroke"
+                [tooltip]="trainingAndSeminarsChart.tooltip"
+                [xaxis]="trainingAndSeminarsChart.xaxis"
+                [yaxis]="trainingAndSeminarsChart.yaxis"
+            ></apx-chart>
+        </ng-container>
     </div>
 </div>

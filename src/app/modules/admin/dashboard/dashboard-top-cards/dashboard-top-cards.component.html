@@ -6,7 +6,7 @@
             <div
                 class="font-bold leading-none tracking-tight text-isat-blue text-7xl sm:text-8xl"
             >
-                0
+                {{ (faculties$ | async).length }}
             </div>
 
             <div class="text-lg font-medium text-isat-blue">Faculties</div>
@@ -26,7 +26,7 @@
             <div
                 class="font-bold leading-none tracking-tight text-isat-orange text-7xl sm:text-8xl"
             >
-                0
+                {{ (publications$ | async).length }}
             </div>
 
             <div class="text-lg font-medium text-isat-orange">Publications</div>
@@ -46,7 +46,7 @@
             <div
                 class="font-bold leading-none tracking-tight text-teal-500 text-7xl sm:text-8xl"
             >
-                0
+                {{ (researches$ | async).length }}
             </div>
 
             <div class="text-lg font-medium text-teal-500">Researches</div>
@@ -66,7 +66,7 @@
             <div
                 class="font-bold leading-none tracking-tight text-emerald-500 text-7xl sm:text-8xl"
             >
-                0
+                {{ (trainingAndSeminars$ | async).length }}
             </div>
 
             <div class="text-lg font-medium text-emerald-500 text">

@@ -24,6 +24,8 @@ export class DashboardTopChartsComponent implements OnInit {
     researchesChart = {...LINE_CHART_CONFIG, colors: ['#13B8A6']}
     trainingAndSeminarsChart = {...LINE_CHART_CONFIG, colors: ['#15B881']}
 
+    ready: boolean = false
+
     faculties$ = this._store.pipe(
         select(StateEnum.FACULTY),
         map((x) => new TransformEntity(x).toArray()),
@@ -39,13 +41,12 @@ export class DashboardTopChartsComponent implements OnInit {
     publications$ = this._store.pipe(
         select(StateEnum.PUBLICATION),
         map((x) => new TransformEntity(x).toArray()),
-        tap(
-            (x) =>
-                (this.publicationsChart.series[0] = {
-                    name: 'Publications',
-                    data: this.toChart(x as any),
-                }),
-        ),
+        tap((x) => {
+            this.publicationsChart.series[0] = {
+                name: 'Publications',
+                data: this.toChart(x as any),
+            }
+        }),
     )
 
     researches$ = this._store.pipe(
@@ -77,6 +78,10 @@ export class DashboardTopChartsComponent implements OnInit {
         this._store.dispatch(StoreAction.PUBLICATION.LOAD())
         this._store.dispatch(StoreAction.RESEARCH.LOAD())
         this._store.dispatch(StoreAction.TRAINING_AND_SEMINARS.LOAD())
+
+        setTimeout(() => {
+            this, (this.ready = true)
+        }, 2000)
     }
 
     toChart(data: ChartData[]): Series[] {
@@ -90,9 +95,10 @@ export class DashboardTopChartsComponent implements OnInit {
         data.forEach((series) => {
             const month = days(series.createdAt).format('MMM')
             const index = chartData.findIndex((data) => data.x === month)
-            chartData[index].y[0] += 1
-        })
 
+            const value = chartData[index].y[0] + 1
+            chartData[index].y[0] = value
+        })
         return chartData
     }
 }
