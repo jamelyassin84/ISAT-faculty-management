@@ -49,11 +49,11 @@ export const adminTabs: FuseNavigationItem[] = [
         link: '/training-and-seminar',
     },
 
-    {
-        id: '7',
-        title: 'Subjects',
-        type: 'basic',
-        icon: 'mat_outline:book',
-        link: '/subjects',
-    },
+    // {
+    //     id: '7',
+    //     title: 'Subjects',
+    //     type: 'basic',
+    //     icon: 'mat_outline:book',
+    //     link: '/subjects',
+    // },
 ]
